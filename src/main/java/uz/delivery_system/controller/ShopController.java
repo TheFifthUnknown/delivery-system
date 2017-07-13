@@ -62,8 +62,14 @@ public class ShopController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}/block", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> block(@PathVariable Long id) {
-        shopService.blockShop(id);
+        shopService.blockShop(id, Boolean.TRUE);
         return new ResponseEntity("Do'kon blocklab qo'yildi", HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/unblock", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> unblock(@PathVariable Long id) {
+        shopService.blockShop(id, Boolean.FALSE);
+        return new ResponseEntity("Do'kon blockdan ochildi", HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

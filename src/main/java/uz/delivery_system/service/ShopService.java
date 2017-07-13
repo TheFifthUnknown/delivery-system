@@ -22,7 +22,7 @@ public interface ShopService {
 
     Page<ShopDetailsDTO> listShopDetails(Pageable pageable);
 
-    void blockShop(Long id);
+    void blockShop(Long id, Boolean blocked);
 
     void deleteShopWithManager(Long id);
 }

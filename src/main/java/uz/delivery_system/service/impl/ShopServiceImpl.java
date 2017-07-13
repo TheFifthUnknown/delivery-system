@@ -94,12 +94,12 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public void blockShop(Long id) {
+    public void blockShop(Long id, Boolean blocked) {
         ShopEntity shopEntity = shopRepository.findOne(id);
         if (shopEntity == null) {
             throw new NotFoundException(2, "Bunday firma topilmadi");
         }
-        shopEntity.setBlocked(Boolean.TRUE);
+        shopEntity.setBlocked(blocked);
         shopRepository.save(shopEntity);
     }
 

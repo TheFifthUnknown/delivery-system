@@ -98,12 +98,12 @@ public class FirmServiceImpl implements FirmService {
     }
 
     @Override
-    public void blockFirm(Long id) {
+    public void blockFirm(Long id, Boolean blocked) {
         FirmEntity firmEntity = firmRepository.findOne(id);
         if(firmEntity == null){
             throw new NotFoundException(2,"Bunday firma topilmadi");
         }
-        firmEntity.setBlocked(Boolean.TRUE);
+        firmEntity.setBlocked(blocked);
         firmRepository.save(firmEntity);
     }
 

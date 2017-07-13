@@ -20,7 +20,7 @@ public interface FirmService {
 
     FirmDetailsDTO getFirmDetails(Long id);
 
-    void blockFirm(Long id);
+    void blockFirm(Long id, Boolean blocked);
 
     Page<FirmDetailsDTO> listFirmDetails(Pageable pageable);
 }
