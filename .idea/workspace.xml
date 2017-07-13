@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c6156d34-56b6-4446-a6df-c0c63718c093" name="Default" comment="Firm, Shop, User block complete">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/controller/FirmController.class" afterPath="$PROJECT_DIR$/target/classes/uz/delivery_system/controller/FirmController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/controller/ShopController.class" afterPath="$PROJECT_DIR$/target/classes/uz/delivery_system/controller/ShopController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/FirmService.class" afterPath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/FirmService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/ShopService.class" afterPath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/ShopService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/impl/FirmServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/impl/FirmServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/impl/ShopServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/impl/ShopServiceImpl.class" />
+    <list default="true" id="c6156d34-56b6-4446-a6df-c0c63718c093" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uz/delivery_system/controller/FirmController.java" afterPath="$PROJECT_DIR$/src/main/java/uz/delivery_system/controller/FirmController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uz/delivery_system/controller/ShopController.java" afterPath="$PROJECT_DIR$/src/main/java/uz/delivery_system/controller/ShopController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uz/delivery_system/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/uz/delivery_system/controller/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/FirmService.java" afterPath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/FirmService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/ShopService.java" afterPath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/ShopService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/UserService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/FirmServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/FirmServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/ShopServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/ShopServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/UserServiceImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/maven-archiver/" />
     <ignored path="$PROJECT_DIR$/target/maven-status/" />
@@ -40,22 +26,12 @@
       <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/uz/delivery_system/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+            <state relative-caret-position="253">
+              <caret line="35" column="57" lean-forward="false" selection-start-line="35" selection-start-column="57" selection-end-line="35" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/UserServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1609#1610#0" expanded="true" />
+                <element signature="e#1676#1677#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -147,7 +123,6 @@
         <option value="$PROJECT_DIR$/src/main/java/uz/delivery_system/component/EhCacheBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/uz/delivery_system/repository/UserRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/uz/delivery_system/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/uz/delivery_system/dto/shop/Proba.java" />
         <option value="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/ShopService.java" />
@@ -156,6 +131,7 @@
         <option value="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/FirmService.java" />
         <option value="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/FirmServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/uz/delivery_system/controller/FirmController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/uz/delivery_system/controller/UserController.java" />
       </list>
     </option>
   </component>
@@ -1017,7 +993,7 @@
       <workItem from="1499836930825" duration="24000" />
       <workItem from="1499854309157" duration="7392000" />
       <workItem from="1499877441617" duration="6022000" />
-      <workItem from="1499919870329" duration="8419000" />
+      <workItem from="1499919870329" duration="9004000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1499921415314</created>
@@ -1040,11 +1016,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499922409803</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Firm, Shop, User block complete">
+      <created>1499929818631</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1499929818631</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75924000" />
+    <option name="totallyTimeSpent" value="76509000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1057,7 +1040,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1071,7 +1054,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38679245" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38679245" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Code Iris" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32969153" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884097" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884097" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1157,7 +1140,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="Firm, Shop, User block complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="Firm, Shop, User block complete" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1507,16 +1491,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/FirmServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -1548,12 +1522,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/uz/delivery_system/controller/UserController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+        <state relative-caret-position="420">
+          <caret line="32" column="17" lean-forward="true" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/uz/delivery_system/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="35" column="57" lean-forward="false" selection-start-line="35" selection-start-column="57" selection-end-line="35" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1609#1610#0" expanded="true" />
+            <element signature="e#1676#1677#0" expanded="true" />
           </folding>
         </state>
       </provider>

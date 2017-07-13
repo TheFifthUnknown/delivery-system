@@ -31,8 +31,8 @@ public class UserController {
         return ResponseEntity.ok("Foydalanuvchi blokdan chiqarildi");
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/exist", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity update(@PathVariable String username) {
-        return ResponseEntity.ok(userService.exists(username));
+    @RequestMapping(method = RequestMethod.GET, value = "/exist/{login}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity exist(@PathVariable String login) {
+        return ResponseEntity.ok(userService.exists(login));
     }
 }
