@@ -1,0 +1,44 @@
+banner:
+    charset: UTF-8
+    location: classpath:banner.txt
+spring:
+    application:
+        name: delivery-system
+
+    datasource:
+        driverClassName: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/delivery-system
+        username: deliver
+        password: ds-2017$
+        sql-script-encoding: UTF-8
+
+    jpa:
+        database: POSTGRESQL
+        show-sql: false
+        hibernate:
+            ddl-auto: update
+            naming:
+                strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        properties:
+            hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
+    jackson:
+        serialization:
+        INDENT_OUTPUT: true
+
+jwt:
+    header: Authorization
+    secret: $sudoco$2017_delivery_system/build*our\team&in^2017
+    expiration: 360000000
+    baseApiPath: /api/v1
+
+route:
+    authentication:
+        shop: /shop/auth
+        deliver: /deliver/auth
+        owner: /owner/auth
+        refresh: refresh
+    logout: logout
+
+server:
+    port: 8080
