@@ -10,4 +10,5 @@ public interface TableName {
     String FIRMS = "firms";
     String SHOPS = "shops";
     String REGIONS = "regions";
+    String CATEGORY = "categories";
 }
