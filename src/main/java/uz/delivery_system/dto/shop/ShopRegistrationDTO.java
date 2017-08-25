@@ -12,7 +12,11 @@ public class ShopRegistrationDTO {
     @Size(min=2, max=255)
     private String shopName;
 
+    @NotNull
+    @Size(min=2, max=255)
     private String shopAddress;
+
+    private String shopOrienter;
 
     @NotNull
     @Size(min=2, max=50)
@@ -24,6 +28,12 @@ public class ShopRegistrationDTO {
 
     @NotNull
     private Long shopRegionId;
+
+    @NotNull
+    private String shopINN;
+
+    @NotNull
+    private String shopOwnerPassport;
 
     // Shop manager informations
 
@@ -139,5 +149,29 @@ public class ShopRegistrationDTO {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getShopINN() {
+        return shopINN;
+    }
+
+    public void setShopINN(String shopINN) {
+        this.shopINN = shopINN;
+    }
+
+    public String getShopOwnerPassport() {
+        return shopOwnerPassport;
+    }
+
+    public void setShopOwnerPassport(String shopOwnerPassport) {
+        this.shopOwnerPassport = shopOwnerPassport;
+    }
+
+    public String getShopOrienter() {
+        return shopOrienter;
+    }
+
+    public void setShopOrienter(String shopOrienter) {
+        this.shopOrienter = shopOrienter;
     }
 }

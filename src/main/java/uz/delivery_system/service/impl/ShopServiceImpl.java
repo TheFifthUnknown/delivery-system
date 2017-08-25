@@ -16,7 +16,7 @@ import uz.delivery_system.entity.ShopEntity;
 import uz.delivery_system.entity.UserEntity;
 import uz.delivery_system.enums.UserRole;
 import uz.delivery_system.exceptions.NotFoundException;
-import uz.delivery_system.exceptions.UserAlreadyExistException;
+import uz.delivery_system.exceptions.AlreadyExistException;
 import uz.delivery_system.repository.RegionRepository;
 import uz.delivery_system.repository.ShopRepository;
 import uz.delivery_system.repository.UserRepository;
@@ -27,6 +27,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import static uz.delivery_system.entity.UserEntity_.shop;
 
 /**
  * Created by Nodirbek on 12.07.2017.
@@ -51,11 +53,18 @@ public class ShopServiceImpl implements ShopService {
     public ShopEntity createShopWithManager(ShopRegistrationDTO registrationDTO) {
         Optional<UserEntity> user = userRepository.findByUsername(registrationDTO.getUsername());
         if (user.isPresent()) {
-            throw new UserAlreadyExistException(2, "Bu login avvaldan mavjud");
+            throw new AlreadyExistException(2, "Bu login avvaldan mavjud");
+        }
+        Optional<ShopEntity> shop = shopRepository.findByShopINN(registrationDTO.getShopINN());
+        if (shop.isPresent()) {
+            throw new AlreadyExistException(2,"Bunday INN avvaldan mavjud!");
         }
         UserEntity userEntity = fetchUserData(registrationDTO);
         ShopEntity shopEntity = fetchShopData(registrationDTO);
         RegionEntity regionEntity = regionRepository.findOne(registrationDTO.getShopRegionId());
+        if (regionEntity == null) {
+            throw new NotFoundException(1,"Bunday region mavjud emas!");
+        }
         userEntity.setShop(shopEntity);
         shopEntity.setManeger(userEntity);
         shopEntity.setRegion(regionEntity);
@@ -70,7 +79,16 @@ public class ShopServiceImpl implements ShopService {
         if (shopEntity == null) {
             throw new NotFoundException(3, "Bunday do'kon topilmadi");
         }
+        Long count = shopRepository.countByShopINN(dto.getShopINN());
+        if (count > 1) {
+            throw new AlreadyExistException(2,"Bunday INN avvaldan mavjud!");
+        }
+        RegionEntity regionEntity = regionRepository.findOne(dto.getShopRegionId());
+        if (regionEntity == null) {
+            throw new NotFoundException(1,"Bunday region mavjud emas!");
+        }
         BeanUtils.copyProperties(dto, shopEntity);
+        shopEntity.setRegion(regionEntity);
         shopRepository.save(shopEntity);
     }
 

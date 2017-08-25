@@ -3,10 +3,8 @@ package uz.delivery_system.entity;
 import uz.delivery_system.entity.base.UpdatableBaseEntity;
 import uz.delivery_system.utils.TableName;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Nodirbek on 07.07.2017.
@@ -35,6 +33,9 @@ public class FirmEntity extends UpdatableBaseEntity{
 
     @OneToOne
     private UserEntity maneger;
+
+    @OneToMany(mappedBy = "firm", cascade = CascadeType.ALL)
+    private List<ProductEntity> products;
 
     public String getFirmName() {
         return firmName;
@@ -91,4 +92,13 @@ public class FirmEntity extends UpdatableBaseEntity{
     public void setManeger(UserEntity maneger) {
         this.maneger = maneger;
     }
+
+    public List<ProductEntity> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductEntity> products) {
+        this.products = products;
+    }
+
 }

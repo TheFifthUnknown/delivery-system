@@ -21,6 +21,9 @@ public class ShopEntity extends UpdatableBaseEntity {
     @Column(name = "shopAddress")
     private String shopAddress;
 
+    @Column(name = "shopOrienter")
+    private String shopOrienter;
+
     @Column(name = "shopContact", nullable = false)
     private String shopContact;
 
@@ -29,6 +32,12 @@ public class ShopEntity extends UpdatableBaseEntity {
 
     @Column(name = "shopEmail")
     private String shopEmail;
+
+    @Column(name = "shopINN")
+    private String shopINN;
+
+    @Column(name = "shopOwnerPassport")
+    private String shopOwnerPassport;
 
     @Column(name = "blocked", columnDefinition = "boolean default FALSE")
     private Boolean blocked = Boolean.FALSE;
@@ -112,5 +121,29 @@ public class ShopEntity extends UpdatableBaseEntity {
 
     public void setRegion(RegionEntity region) {
         this.region = region;
+    }
+
+    public String getShopINN() {
+        return shopINN;
+    }
+
+    public void setShopINN(String shopINN) {
+        this.shopINN = shopINN;
+    }
+
+    public String getShopOwnerPassport() {
+        return shopOwnerPassport;
+    }
+
+    public void setShopOwnerPassport(String shopOwnerPassport) {
+        this.shopOwnerPassport = shopOwnerPassport;
+    }
+
+    public String getShopOrienter() {
+        return shopOrienter;
+    }
+
+    public void setShopOrienter(String shopOrienter) {
+        this.shopOrienter = shopOrienter;
     }
 }

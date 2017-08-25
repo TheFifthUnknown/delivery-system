@@ -37,6 +37,7 @@ route:
         shop: /shop/auth
         deliver: /deliver/auth
         owner: /owner/auth
+        firm: /firm/auth
         refresh: refresh
     logout: logout
 

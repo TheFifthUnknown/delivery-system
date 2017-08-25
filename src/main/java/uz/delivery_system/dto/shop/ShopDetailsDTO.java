@@ -10,28 +10,20 @@ import java.util.Date;
 public class ShopDetailsDTO extends ResourceSupport{
 
     private Long shopId;
-
     private String shopName;
-
     private String shopAddress;
-
     private String shopContact;
-
     private String shopExtraContact;
-
     private String shopEmail;
-
     private String managerName;
-
     private Long managerId;
-
     private Date createDate;
-
     private Boolean active;
-
     private Long shopRegionId;
-
     private String shopRegionName;
+    private String shopOrienter;
+    private String shopINN;
+    private String shopOwnerPassport;
 
     public Long getShopId() {
         return shopId;
@@ -127,5 +119,29 @@ public class ShopDetailsDTO extends ResourceSupport{
 
     public void setShopRegionName(String shopRegionName) {
         this.shopRegionName = shopRegionName;
+    }
+
+    public String getShopOrienter() {
+        return shopOrienter;
+    }
+
+    public void setShopOrienter(String shopOrienter) {
+        this.shopOrienter = shopOrienter;
+    }
+
+    public String getShopINN() {
+        return shopINN;
+    }
+
+    public void setShopINN(String shopINN) {
+        this.shopINN = shopINN;
+    }
+
+    public String getShopOwnerPassport() {
+        return shopOwnerPassport;
+    }
+
+    public void setShopOwnerPassport(String shopOwnerPassport) {
+        this.shopOwnerPassport = shopOwnerPassport;
     }
 }

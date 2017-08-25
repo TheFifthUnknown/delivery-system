@@ -46,6 +46,48 @@ public class AuthenticationRestController {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @RequestMapping(value = "${route.authentication.owner}", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> createAuthenticationMobileDriverToken(@RequestBody JwtAuthenticationRequest authenticationRequest,Device device,HttpServletResponse response) throws AuthenticationException, IOException {
+        // Perform the security
+        final Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        authenticationRequest.getUsername(),
+                        authenticationRequest.getPassword()
+                )
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        JwtUser jwtUser = SecurityUtils.getUserDetails();
+        if (!jwtUser.getAuthorities().contains(new SimpleGrantedAuthority(UserRole.ADMIN.authority()))) {
+            throw new UsernameNotFoundException(authenticationRequest.getUsername()+" user not access to the admin panel");
+        }
+        final String token = jwtTokenUtil.generateToken(jwtUser, device);
+        ehCacheBean.putUserDetails(jwtUser);
+        // Return the token
+        return ResponseEntity.ok(new JwtAuthenticationResponse(token, jwtUser.getFullName(),UserRole.ADMIN));
+    }
+
+    @RequestMapping(value = "${route.authentication.firm}", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> createAuthenticationFirmAdmin(@RequestBody JwtAuthenticationRequest authenticationRequest,Device device,HttpServletResponse response) throws AuthenticationException, IOException {
+        // Perform the security
+        final Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        authenticationRequest.getUsername(),
+                        authenticationRequest.getPassword()
+                )
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        JwtUser jwtUser = SecurityUtils.getUserDetails();
+        if (!jwtUser.getAuthorities().contains(new SimpleGrantedAuthority(UserRole.FIRM_ADMIN.authority()))) {
+            throw new UsernameNotFoundException(authenticationRequest.getUsername()+" user not access to the admin panel");
+        }
+        final String token = jwtTokenUtil.generateToken(jwtUser, device);
+        ehCacheBean.putUserDetails(jwtUser);
+        // Return the token
+        return ResponseEntity.ok(new JwtAuthenticationResponse(token, jwtUser.getFullName(),SecurityUtils.getUserRole()));
+    }
+
     @RequestMapping(value = "${route.authentication.shop}", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> createAuthenticationWebToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device, HttpServletResponse response) throws AuthenticationException, IOException {
@@ -86,27 +128,6 @@ public class AuthenticationRestController {
         ehCacheBean.putUserDetails(jwtUser);
         // Return the token
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
-    }
-
-    @RequestMapping(value = "${route.authentication.owner}", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> createAuthenticationMobileDriverToken(@RequestBody JwtAuthenticationRequest authenticationRequest,Device device,HttpServletResponse response) throws AuthenticationException, IOException {
-        // Perform the security
-        final Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        authenticationRequest.getUsername(),
-                        authenticationRequest.getPassword()
-                )
-        );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        JwtUser jwtUser = SecurityUtils.getUserDetails();
-        if (!jwtUser.getAuthorities().contains(new SimpleGrantedAuthority(UserRole.ADMIN.authority()))) {
-            throw new UsernameNotFoundException(authenticationRequest.getUsername()+" user not access to the admin panel");
-        }
-        final String token = jwtTokenUtil.generateToken(jwtUser, device);
-        ehCacheBean.putUserDetails(jwtUser);
-        // Return the token
-        return ResponseEntity.ok(new JwtAuthenticationResponse(token, jwtUser.getFullName(),UserRole.ADMIN));
     }
 
     @RequestMapping(value = "${route.authentication.refresh}", method = RequestMethod.GET)

@@ -15,7 +15,7 @@ import uz.delivery_system.entity.FirmEntity;
 import uz.delivery_system.entity.UserEntity;
 import uz.delivery_system.enums.UserRole;
 import uz.delivery_system.exceptions.NotFoundException;
-import uz.delivery_system.exceptions.UserAlreadyExistException;
+import uz.delivery_system.exceptions.AlreadyExistException;
 import uz.delivery_system.repository.FirmRepository;
 import uz.delivery_system.repository.UserRepository;
 import uz.delivery_system.service.FirmService;
@@ -46,7 +46,7 @@ public class FirmServiceImpl implements FirmService {
     public FirmEntity createFirmWithManager(FirmRegistrationDTO registrationDTO) {
         Optional<UserEntity> user = userRepository.findByUsername(registrationDTO.getUsername());
         if(user.isPresent()){
-            throw new UserAlreadyExistException(2,"Bu login avvaldan mavjud");
+            throw new AlreadyExistException(2,"Bu login avvaldan mavjud");
         }
         UserEntity userEntity = fetchUserData(registrationDTO);
         FirmEntity firmEntity = fetchFirmData(registrationDTO);

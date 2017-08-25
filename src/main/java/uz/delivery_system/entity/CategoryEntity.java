@@ -3,9 +3,8 @@ package uz.delivery_system.entity;
 import uz.delivery_system.entity.base.UpdatableBaseEntity;
 import uz.delivery_system.utils.TableName;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Nodirbek on 13.07.2017.
@@ -25,6 +24,9 @@ public class CategoryEntity extends UpdatableBaseEntity{
 
     @Column(name = "parentId", columnDefinition = "bigint default 0")
     private Long categoryParentId=0L;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<ProductEntity> productEntities;
 
     public String getCategoryName() {
         return categoryName;
@@ -58,4 +60,11 @@ public class CategoryEntity extends UpdatableBaseEntity{
         this.categoryParentId = categoryParentId;
     }
 
+    public List<ProductEntity> getProductEntities() {
+        return productEntities;
+    }
+
+    public void setProductEntities(List<ProductEntity> productEntities) {
+        this.productEntities = productEntities;
+    }
 }

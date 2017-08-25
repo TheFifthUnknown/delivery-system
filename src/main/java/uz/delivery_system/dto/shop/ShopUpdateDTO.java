@@ -7,6 +7,7 @@ import javax.validation.constraints.Size;
  * Created by Nodirbek on 08.07.2017.
  */
 public class ShopUpdateDTO {
+
     @NotNull
     private Long shopId;
 
@@ -26,6 +27,14 @@ public class ShopUpdateDTO {
 
     @NotNull
     private Long shopRegionId;
+
+    @NotNull
+    private String shopINN;
+
+    @NotNull
+    private String shopOwnerPassport;
+
+    private String shopOrienter;
 
     public Long getShopId() {
         return shopId;
@@ -81,5 +90,29 @@ public class ShopUpdateDTO {
 
     public void setShopRegionId(Long shopRegionId) {
         this.shopRegionId = shopRegionId;
+    }
+
+    public String getShopINN() {
+        return shopINN;
+    }
+
+    public void setShopINN(String shopINN) {
+        this.shopINN = shopINN;
+    }
+
+    public String getShopOwnerPassport() {
+        return shopOwnerPassport;
+    }
+
+    public void setShopOwnerPassport(String shopOwnerPassport) {
+        this.shopOwnerPassport = shopOwnerPassport;
+    }
+
+    public String getShopOrienter() {
+        return shopOrienter;
+    }
+
+    public void setShopOrienter(String shopOrienter) {
+        this.shopOrienter = shopOrienter;
     }
 }

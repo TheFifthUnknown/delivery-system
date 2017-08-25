@@ -24,7 +24,7 @@ import uz.delivery_system.security.JwtAuthenticationTokenFilter;
 public class DeliverySystemSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static String[] unfilteredUrls = new String[]{
-            "/api/v1/shop/auth*", "/api/v1/refresh*","/api/v1/owner/auth*",
+            "/api/v1/shop/auth*", "/api/v1/refresh*","/api/v1/owner/auth*", "/api/v1/firm/auth*",
                 "/api/v1/deliver/auth*"};
 
     @Autowired
