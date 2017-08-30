@@ -1,5 +1,6 @@
 package uz.delivery_system;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -10,6 +11,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import uz.delivery_system.storage.StorageService;
 
 @EnableAsync
 @EnableCaching
@@ -46,4 +48,12 @@ public class DeliverySystemApplication {
         messageBundle.setDefaultEncoding("UTF-8");
         return messageBundle;
     }
+
+    @Bean
+    CommandLineRunner init(StorageService storageService) {
+        return (args) -> {
+            System.out.println("CommandLineRunner");
+        };
+    }
+
 }

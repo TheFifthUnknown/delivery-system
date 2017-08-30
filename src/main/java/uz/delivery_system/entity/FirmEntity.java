@@ -28,6 +28,9 @@ public class FirmEntity extends UpdatableBaseEntity{
     @Column(name = "firmEmail")
     private String firmEmail;
 
+    @Column(name = "firmLogoUrl")
+    private String firmLogoUrl;
+
     @Column(name = "blocked", columnDefinition = "boolean default FALSE")
     private Boolean blocked = Boolean.FALSE;
 
@@ -101,4 +104,11 @@ public class FirmEntity extends UpdatableBaseEntity{
         this.products = products;
     }
 
+    public String getFirmLogoUrl() {
+        return firmLogoUrl;
+    }
+
+    public void setFirmLogoUrl(String firmLogoUrl) {
+        this.firmLogoUrl = firmLogoUrl;
+    }
 }

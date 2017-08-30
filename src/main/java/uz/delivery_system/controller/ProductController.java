@@ -11,6 +11,8 @@ import uz.delivery_system.dto.product.ProductDTO;
 import uz.delivery_system.dto.product.ProductDetailsDTO;
 import uz.delivery_system.service.ProductService;
 
+import java.util.List;
+
 /**
  * Created by Nodirbek on 15.07.2017.
  */
@@ -48,6 +50,13 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> listProductDetails(Pageable pageable){
         Page<ProductDetailsDTO> dtoPage = productService.listProductDetails(pageable);
+        return new ResponseEntity<>(dtoPage, HttpStatus.OK);
+    }
+
+    // For Android-Shop client
+    @RequestMapping(method = RequestMethod.GET, value = "/firm/{firmId}/category/{category}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> listCategoryProducts(@PathVariable Long firmId, @PathVariable Long category){
+        List<ProductDetailsDTO> dtoPage = productService.listCategoryProducts(firmId, category);
         return new ResponseEntity<>(dtoPage, HttpStatus.OK);
     }
 }

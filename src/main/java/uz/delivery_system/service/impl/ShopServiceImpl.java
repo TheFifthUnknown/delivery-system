@@ -28,8 +28,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import static uz.delivery_system.entity.UserEntity_.shop;
-
 /**
  * Created by Nodirbek on 12.07.2017.
  */

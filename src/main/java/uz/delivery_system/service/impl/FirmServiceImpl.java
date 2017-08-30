@@ -8,10 +8,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import uz.delivery_system.dto.firm.CategoryFirmsDTO;
 import uz.delivery_system.dto.firm.FirmDetailsDTO;
 import uz.delivery_system.dto.firm.FirmRegistrationDTO;
 import uz.delivery_system.dto.firm.FirmUpdateDTO;
 import uz.delivery_system.entity.FirmEntity;
+import uz.delivery_system.entity.ProductEntity;
 import uz.delivery_system.entity.UserEntity;
 import uz.delivery_system.enums.UserRole;
 import uz.delivery_system.exceptions.NotFoundException;
@@ -84,6 +86,29 @@ public class FirmServiceImpl implements FirmService {
             list.add(getFirmDetailsAsDTO(firmEntity));
         });
         return new PageImpl<>(list);
+    }
+
+    @Override
+    public List<CategoryFirmsDTO> getFirmsByCategory(Long categoryId) {
+        List<FirmEntity> firmEntities = firmRepository.findAll();
+        List<CategoryFirmsDTO> list = new ArrayList<>();
+        firmEntities.forEach(firmEntity -> {
+            int count = 0;
+            for (ProductEntity productEntity : firmEntity.getProducts()) {
+                if (productEntity.getCategory().getId() == categoryId){
+                    count++;
+                }
+            }
+            if(count > 0){
+                CategoryFirmsDTO dto = new CategoryFirmsDTO();
+                dto.setId(firmEntity.getId());
+                dto.setFirmName(firmEntity.getFirmName());
+                dto.setProductCount(count);
+                dto.setImageUrl(firmEntity.getFirmLogoUrl());
+                list.add(dto);
+            }
+        });
+        return list;
     }
 
     @Override

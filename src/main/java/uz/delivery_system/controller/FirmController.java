@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import uz.delivery_system.dto.firm.CategoryFirmsDTO;
 import uz.delivery_system.dto.firm.FirmDetailsDTO;
 import uz.delivery_system.dto.firm.FirmRegistrationDTO;
 import uz.delivery_system.dto.firm.FirmUpdateDTO;
@@ -18,6 +19,7 @@ import uz.delivery_system.exceptions.ConfirmPasswordException;
 import uz.delivery_system.service.FirmService;
 
 import java.net.URI;
+import java.util.List;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
@@ -56,6 +58,12 @@ public class FirmController {
     @RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> listFirmDetails(Pageable pageable) {
         Page<FirmDetailsDTO> dto = firmService.listFirmDetails(pageable);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/category/{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> getFirmsByCategory(@PathVariable Long id) {
+        List<CategoryFirmsDTO> dto = firmService.getFirmsByCategory(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 

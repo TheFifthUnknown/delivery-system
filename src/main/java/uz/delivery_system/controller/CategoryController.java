@@ -15,6 +15,7 @@ import uz.delivery_system.entity.FirmEntity;
 import uz.delivery_system.service.CategoryService;
 
 import java.net.URI;
+import java.util.List;
 
 /**
  * Created by Nodirbek on 13.07.2017.
@@ -45,9 +46,8 @@ public class CategoryController {
     }
 
     @RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> listCategory(Pageable pageable) {
-        Page<CategoryDTO> dto = categoryService.listCategories(pageable);
+    public ResponseEntity<?> listCategory() {
+        List<CategoryDTO> dto = categoryService.listCategories();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
-
 }

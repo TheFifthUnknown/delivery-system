@@ -26,6 +26,10 @@ spring:
         serialization:
         INDENT_OUTPUT: true
 
+    http:
+        multipart:
+          max-file-size: 128KB
+          max-request-size: 128KB
 jwt:
     header: Authorization
     secret: $sudoco$2017_delivery_system/build*our\team&in^2017
@@ -37,6 +41,7 @@ route:
         shop: /shop/auth
         deliver: /deliver/auth
         owner: /owner/auth
+        firm: /firm/auth
         refresh: refresh
     logout: logout
 

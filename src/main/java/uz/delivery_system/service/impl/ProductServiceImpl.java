@@ -93,6 +93,16 @@ public class ProductServiceImpl implements ProductService {
         return new PageImpl<>(list);
     }
 
+    @Override
+    public List<ProductDetailsDTO> listCategoryProducts(Long firmId, Long categoryId) {
+        List<ProductEntity> productEntities = productRepository.findByFirmIdAndCategoryIdOrderByIdDesc(firmId, categoryId);
+        List<ProductDetailsDTO> list = new ArrayList<>();
+        productEntities.forEach(productEntity -> {
+            list.add(getProductDetailsDTO(productEntity));
+        });
+        return list;
+    }
+
     private ProductEntity getProductEntity(ProductDTO productDTO) {
         ProductEntity productEntity = new ProductEntity();
         BeanUtils.copyProperties(productDTO, productEntity);

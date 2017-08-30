@@ -4,6 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import uz.delivery_system.dto.category.CategoryDTO;
 
+import java.util.List;
+
 /**
  * Created by Nodirbek on 13.07.2017.
  */
@@ -15,5 +17,5 @@ public interface CategoryService {
 
     void delete(Long id);
 
-    Page<CategoryDTO> listCategories(Pageable pageable);
+    List<CategoryDTO> listCategories();
 }

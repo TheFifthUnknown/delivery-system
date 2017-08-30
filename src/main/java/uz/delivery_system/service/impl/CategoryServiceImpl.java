@@ -56,13 +56,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Page<CategoryDTO> listCategories(Pageable pageable) {
-        Page<CategoryEntity> page = categoryRepository.findAll(pageable);
+    public List<CategoryDTO> listCategories() {
+        List<CategoryEntity> categoryEntities = categoryRepository.findAll();
         List<CategoryDTO> list = new ArrayList<>();
-        page.forEach(categoryEntity -> {
+        categoryEntities.forEach(categoryEntity -> {
             list.add(getCategoryDTO(categoryEntity));
         });
-        return new PageImpl<CategoryDTO>(list);
+        return list;
     }
 
     private CategoryDTO getCategoryDTO(CategoryEntity categoryEntity) {
