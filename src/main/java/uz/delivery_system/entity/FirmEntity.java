@@ -34,6 +34,9 @@ public class FirmEntity extends UpdatableBaseEntity{
     @Column(name = "blocked", columnDefinition = "boolean default FALSE")
     private Boolean blocked = Boolean.FALSE;
 
+    @Column(name = "contractNumber")
+    private Long contractNumber = 0l;
+
     @OneToOne
     private UserEntity maneger;
 
@@ -110,5 +113,13 @@ public class FirmEntity extends UpdatableBaseEntity{
 
     public void setFirmLogoUrl(String firmLogoUrl) {
         this.firmLogoUrl = firmLogoUrl;
+    }
+
+    public Long getContractNumber() {
+        return contractNumber;
+    }
+
+    public void setContractNumber(Long contractNumber) {
+        this.contractNumber = contractNumber;
     }
 }

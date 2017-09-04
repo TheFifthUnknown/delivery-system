@@ -12,5 +12,6 @@ public interface TableName {
     String REGIONS = "regions";
     String CATEGORY = "categories";
     String PRODUCTS = "products";
-
+    String ORDERS = "orders";
+    String ORDER_PRODUCTS = "order_products";
 }

@@ -23,6 +23,9 @@ public class ProductEntity extends BaseEntity{
 
 //    private List<String> productImageUrls;
 
+    @Column(name = "productSaleType")
+    private String productSaleType;
+
     @Column(name = "categoryId")
     private Long categoryId;
 
@@ -95,4 +98,11 @@ public class ProductEntity extends BaseEntity{
         this.firm = firm;
     }
 
+    public String getProductSaleType() {
+        return productSaleType;
+    }
+
+    public void setProductSaleType(String productSaleType) {
+        this.productSaleType = productSaleType;
+    }
 }
