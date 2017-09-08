@@ -1,7 +1,6 @@
 package uz.delivery_system.dto.product;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * Created by Nodirbek on 16.07.2017.
@@ -19,6 +18,12 @@ public class ProductDetailsDTO {
     private String productCategory;
 
     private String productFirm;
+
+    private String productLogoUrl;
+
+    private List<SliderDetails> sliders;
+
+    private String unitOfMeasurement;
 
     public Long getId() {
         return id;
@@ -66,5 +71,29 @@ public class ProductDetailsDTO {
 
     public void setProductFirm(String productFirm) {
         this.productFirm = productFirm;
+    }
+
+    public String getProductLogoUrl() {
+        return productLogoUrl;
+    }
+
+    public void setProductLogoUrl(String productLogoUrl) {
+        this.productLogoUrl = productLogoUrl;
+    }
+
+    public List<SliderDetails> getSliders() {
+        return sliders;
+    }
+
+    public void setSliders(List<SliderDetails> sliders) {
+        this.sliders = sliders;
+    }
+
+    public String getUnitOfMeasurement() {
+        return unitOfMeasurement;
+    }
+
+    public void setUnitOfMeasurement(String unitOfMeasurement) {
+        this.unitOfMeasurement = unitOfMeasurement;
     }
 }

@@ -1,9 +1,12 @@
 package uz.delivery_system.entity;
 
+import uz.delivery_system.dto.product.SliderDetails;
 import uz.delivery_system.entity.base.BaseEntity;
 import uz.delivery_system.utils.TableName;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Nodirbek on 15.07.2017.
@@ -21,10 +24,14 @@ public class ProductEntity extends BaseEntity{
     @Column(name = "info")
     private String productInfo;
 
-//    private List<String> productImageUrls;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<SliderImageEntity> slides;
 
-    @Column(name = "productSaleType")
-    private String productSaleType;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private LogoImageEntity productLogo;
+
+    @Column(name = "unitOfMeasurement")
+    private String unitOfMeasurement;
 
     @Column(name = "categoryId")
     private Long categoryId;
@@ -98,11 +105,41 @@ public class ProductEntity extends BaseEntity{
         this.firm = firm;
     }
 
-    public String getProductSaleType() {
-        return productSaleType;
+    public List<SliderImageEntity> getSlides() {
+        return slides;
     }
 
-    public void setProductSaleType(String productSaleType) {
-        this.productSaleType = productSaleType;
+    public void setSlides(List<SliderImageEntity> slides) {
+        this.slides = slides;
     }
+
+    public List<SliderDetails> getSliderImageNames(){
+        List<SliderDetails> list = new ArrayList<>();
+        for (SliderImageEntity entity :
+                slides) {
+            list.add(new SliderDetails(entity.getUrl(), entity.getTitle()));
+        }
+        return list;
+    }
+
+    public String getLogoUrl() {
+        return productLogo.getUrl();
+    }
+
+    public String getUnitOfMeasurement() {
+        return unitOfMeasurement;
+    }
+
+    public void setUnitOfMeasurement(String unitOfMeasurement) {
+        this.unitOfMeasurement = unitOfMeasurement;
+    }
+
+    public LogoImageEntity getProductLogo() {
+        return productLogo;
+    }
+
+    public void setProductLogo(LogoImageEntity productLogo) {
+        this.productLogo = productLogo;
+    }
+
 }

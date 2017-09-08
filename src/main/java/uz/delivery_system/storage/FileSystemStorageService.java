@@ -6,6 +6,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 import org.springframework.context.annotation.Bean;
@@ -22,24 +25,57 @@ public class FileSystemStorageService implements StorageService {
     private final Path rootLocation = Paths.get(new StorageProperties().getLocation());
 
     @Override
-    public void store(MultipartFile file) {
-        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+    public String store(MultipartFile file) {
+        if(file == null){
+            return "no_image.png";
+        }
+        String filename = getAndValidateFilename(file);
         try {
-            if (file.isEmpty()) {
-                throw new StorageException("Failed to store empty file " + filename);
-            }
-            if (filename.contains("..")) {
-                // This is a security check
-                throw new StorageException(
-                        "Cannot store file with relative path outside current directory "
-                                + filename);
-            }
             Files.copy(file.getInputStream(), this.rootLocation.resolve(filename),
                     StandardCopyOption.REPLACE_EXISTING);
+            return filename;
+        } catch (IOException e) {
+            throw new StorageException("Fayllardan birini yuklashda xatolik bo'ldi! ", e);
+        }
+    }
+
+    @Override
+    public List<String> storeAll(MultipartFile[] files) {
+        List<String> names = new ArrayList<>();
+        if(files == null){
+            names.add("no_image.png");
+            return names;
+        }
+        try {
+            for (int i=0; i<files.length; i++){
+                String filename = getAndValidateFilename(files[i]);
+                Files.copy(files[i].getInputStream(), this.rootLocation.resolve(filename),
+                        StandardCopyOption.REPLACE_EXISTING);
+                names.add(filename);
+            }
         }
         catch (IOException e) {
-            throw new StorageException("Failed to store file " + filename, e);
+            throw new StorageException("Fayllardan birini yuklashda xatolik bo'ldi! ", e);
         }
+        return names;
+    }
+
+    private String getAndValidateFilename(MultipartFile file) {
+        if (file.isEmpty()) {
+            throw new StorageException("Faylni yuklashdaa xatolik");
+        }
+        String name = file.getOriginalFilename();
+        int ind = -1;
+        for (int i=name.length()-1; i > 0; i--){
+            if (name.charAt(i) =='.'){
+                ind = i;
+                break;
+            }
+        }
+        if(ind < 0){
+            throw new StorageException("Faylni yuklashdaa xatolik");
+        }
+        return UUID.randomUUID().toString()+name.substring(ind);
     }
 
     @Override

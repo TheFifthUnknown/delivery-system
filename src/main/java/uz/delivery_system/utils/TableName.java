@@ -14,4 +14,6 @@ public interface TableName {
     String PRODUCTS = "products";
     String ORDERS = "orders";
     String ORDER_PRODUCTS = "order_products";
+    String LOGO_URLS = "image_urls";
+    String SLIDERS = "sliders";
 }

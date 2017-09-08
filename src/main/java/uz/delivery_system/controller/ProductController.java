@@ -6,7 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import uz.delivery_system.dto.product.ProductDTO;
 import uz.delivery_system.dto.product.ProductDetailsDTO;
 import uz.delivery_system.service.ProductService;
@@ -23,14 +25,14 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> create(@RequestBody ProductDTO productDTO){
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> create(@Validated ProductDTO productDTO){
         productService.addProduct(productDTO);
         return new ResponseEntity<>("Maxsulot ro'yhatga qo'shildi", HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> update(@RequestBody ProductDTO productDTO){
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<?> update(@Validated ProductDTO productDTO){
         productService.update(productDTO);
         return new ResponseEntity<>("Maxsulot ma'lumotlari yangilandi", HttpStatus.OK);
     }

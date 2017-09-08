@@ -35,6 +35,9 @@ public class OrderEntity extends BaseEntity{
     @Column(name = "status", nullable = false)
     private short status = 0;
 
+    @Column(name = "paymentType")
+    private Integer paymentType = 0;
+
     @Column(name = "orderedProductsCount")
     private Integer orderedProductsCount;
 
@@ -103,5 +106,13 @@ public class OrderEntity extends BaseEntity{
 
     public void setOrderedProductsCount(Integer orderedProductsCount) {
         this.orderedProductsCount = orderedProductsCount;
+    }
+
+    public int getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(int paymentType) {
+        this.paymentType = paymentType;
     }
 }

@@ -71,6 +71,7 @@ public class OrderServiceImpl implements OrderService {
         orderEntity.setStatus((short)0);
         orderEntity.setRegisterNumber(firmEntity.getContractNumber()+1);
         orderEntity.setOrderedProductsCount(dto.getProductCounts().size());
+        orderEntity.setPaymentType(dto.getPaymentType());
 
         firmEntity.setContractNumber(firmEntity.getContractNumber()+1);
         firmRepository.save(firmEntity);
@@ -162,7 +163,7 @@ public class OrderServiceImpl implements OrderService {
         OrderProductsDTO dto = new OrderProductsDTO();
         dto.setProductId(orderProductEntity.getProduct().getId());
         dto.setProductName(orderProductEntity.getProduct().getProductName());
-        dto.setProductSaleType(orderProductEntity.getProduct().getProductSaleType());
+        dto.setProductSaleType(orderProductEntity.getProduct().getUnitOfMeasurement());
         dto.setProductCount(orderProductEntity.getCountProducts());
         dto.setProductAccepted(orderProductEntity.getAccepted());
         return dto;

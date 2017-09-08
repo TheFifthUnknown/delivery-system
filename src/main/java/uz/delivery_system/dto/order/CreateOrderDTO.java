@@ -16,6 +16,9 @@ public class CreateOrderDTO {
     @NotEmpty
     private List<ProductCount> productCounts;
 
+    @NotNull
+    private int paymentType;
+
     public Long getFirmId() {
         return firmId;
     }
@@ -30,5 +33,13 @@ public class CreateOrderDTO {
 
     public void setProductCounts(List<ProductCount> productCounts) {
         this.productCounts = productCounts;
+    }
+
+    public int getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(int paymentType) {
+        this.paymentType = paymentType;
     }
 }
