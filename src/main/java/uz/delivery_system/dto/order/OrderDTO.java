@@ -15,6 +15,14 @@ public class OrderDTO {
 
     private int count;
 
+    private Long firmId;
+
+    private String firmName;
+
+    private Long shopId;
+
+    private String shopName;
+
     public Long getOrderId() {
         return orderId;
     }
@@ -45,5 +53,37 @@ public class OrderDTO {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public Long getFirmId() {
+        return firmId;
+    }
+
+    public void setFirmId(Long firmId) {
+        this.firmId = firmId;
+    }
+
+    public String getFirmName() {
+        return firmName;
+    }
+
+    public void setFirmName(String firmName) {
+        this.firmName = firmName;
+    }
+
+    public Long getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Long shopId) {
+        this.shopId = shopId;
+    }
+
+    public String getShopName() {
+        return shopName;
+    }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
     }
 }

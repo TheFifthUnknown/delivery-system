@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-sources/apt-test" />
         <outputRelativeToContentRoot value="true" />
         <processor name="org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor" />
+        <module name="delivery-system-api" />
         <module name="jwt-spring-security-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="delivery-system-api" target="1.8" />
       <module name="jwt-spring-security-demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>

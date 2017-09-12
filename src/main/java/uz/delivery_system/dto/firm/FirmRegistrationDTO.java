@@ -42,6 +42,8 @@ public class FirmRegistrationDTO {
 
     private String phone;
 
+    private Long dpxContractNumber;
+
     public String getFirmName() {
         return firmName;
     }
@@ -128,5 +130,13 @@ public class FirmRegistrationDTO {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Long getDpxContractNumber() {
+        return dpxContractNumber;
+    }
+
+    public void setDpxContractNumber(Long dpxContractNumber) {
+        this.dpxContractNumber = dpxContractNumber;
     }
 }

@@ -52,6 +52,7 @@ public class DeliverySystemApplication {
     @Bean
     CommandLineRunner init(StorageService storageService) {
         return (args) -> {
+            storageService.init();
             System.out.println("CommandLineRunner");
         };
     }

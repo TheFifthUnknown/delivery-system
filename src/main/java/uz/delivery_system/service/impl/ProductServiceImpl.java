@@ -40,7 +40,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private UserRepository userRepository;
-    private String IMAGE_URL = "http://192.168.1.104:8080/api/v1/files/";
+    private String IMAGE_URL = "http://dpx.uz:8080/api/v1/files/";
 
     @Override
     @Transactional

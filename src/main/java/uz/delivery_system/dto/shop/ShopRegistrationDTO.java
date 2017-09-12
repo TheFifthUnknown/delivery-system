@@ -35,6 +35,8 @@ public class ShopRegistrationDTO {
     @NotNull
     private String shopOwnerPassport;
 
+    private Long dpxContractNumber = 0l;
+
     // Shop manager informations
 
     @NotNull
@@ -173,5 +175,13 @@ public class ShopRegistrationDTO {
 
     public void setShopOrienter(String shopOrienter) {
         this.shopOrienter = shopOrienter;
+    }
+
+    public Long getDpxContractNumber() {
+        return dpxContractNumber;
+    }
+
+    public void setDpxContractNumber(Long dpxContractNumber) {
+        this.dpxContractNumber = dpxContractNumber;
     }
 }

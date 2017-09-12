@@ -42,6 +42,9 @@ public class ShopEntity extends UpdatableBaseEntity {
     @Column(name = "blocked", columnDefinition = "boolean default FALSE")
     private Boolean blocked = Boolean.FALSE;
 
+    @Column(name = "dpxContractNumber")
+    private Long dpxContractNumber = 0l;
+
     @Column(name = "shopRegionId")
     private Long shopRegionId;
 
@@ -145,5 +148,13 @@ public class ShopEntity extends UpdatableBaseEntity {
 
     public void setShopOrienter(String shopOrienter) {
         this.shopOrienter = shopOrienter;
+    }
+
+    public Long getDpxContractNumber() {
+        return dpxContractNumber;
+    }
+
+    public void setDpxContractNumber(Long dpxContractNumber) {
+        this.dpxContractNumber = dpxContractNumber;
     }
 }

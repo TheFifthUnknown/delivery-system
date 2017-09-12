@@ -11,9 +11,9 @@ public class OrderProductsDTO {
 
     private int productCount;
 
-    private String productSaleType;
-
     private Boolean productAccepted;
+
+    private String unitOfMeasurement;
 
     public Long getProductId() {
         return productId;
@@ -39,19 +39,19 @@ public class OrderProductsDTO {
         this.productCount = productCount;
     }
 
-    public String getProductSaleType() {
-        return productSaleType;
-    }
-
-    public void setProductSaleType(String productSaleType) {
-        this.productSaleType = productSaleType;
-    }
-
     public Boolean getProductAccepted() {
         return productAccepted;
     }
 
     public void setProductAccepted(Boolean productAccepted) {
         this.productAccepted = productAccepted;
+    }
+
+    public String getUnitOfMeasurement() {
+        return unitOfMeasurement;
+    }
+
+    public void setUnitOfMeasurement(String unitOfMeasurement) {
+        this.unitOfMeasurement = unitOfMeasurement;
     }
 }

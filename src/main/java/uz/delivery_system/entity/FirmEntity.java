@@ -34,8 +34,11 @@ public class FirmEntity extends UpdatableBaseEntity{
     @Column(name = "blocked", columnDefinition = "boolean default FALSE")
     private Boolean blocked = Boolean.FALSE;
 
-    @Column(name = "contractNumber")
-    private Long contractNumber = 0l;
+    @Column(name = "shopContractNumber")
+    private Long shopContractNumber = 0l;
+
+    @Column(name = "dpxContractNumber")
+    private Long dpxContractNumber = 0l;
 
     @OneToOne
     private UserEntity maneger;
@@ -115,11 +118,19 @@ public class FirmEntity extends UpdatableBaseEntity{
         this.firmLogoUrl = firmLogoUrl;
     }
 
-    public Long getContractNumber() {
-        return contractNumber;
+    public Long getShopContractNumber() {
+        return shopContractNumber;
     }
 
-    public void setContractNumber(Long contractNumber) {
-        this.contractNumber = contractNumber;
+    public void setShopContractNumber(Long shopContractNumber) {
+        this.shopContractNumber = shopContractNumber;
+    }
+
+    public Long getDpxContractNumber() {
+        return dpxContractNumber;
+    }
+
+    public void setDpxContractNumber(Long dpxContractNumber) {
+        this.dpxContractNumber = dpxContractNumber;
     }
 }

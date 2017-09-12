@@ -69,11 +69,11 @@ public class OrderServiceImpl implements OrderService {
         orderEntity.setDeliverDate(new Date());
         orderEntity.setOrderProducts(orderProductEntities);
         orderEntity.setStatus((short)0);
-        orderEntity.setRegisterNumber(firmEntity.getContractNumber()+1);
+        orderEntity.setRegisterNumber(firmEntity.getShopContractNumber()+1);
         orderEntity.setOrderedProductsCount(dto.getProductCounts().size());
         orderEntity.setPaymentType(dto.getPaymentType());
 
-        firmEntity.setContractNumber(firmEntity.getContractNumber()+1);
+        firmEntity.setShopContractNumber(firmEntity.getShopContractNumber()+1);
         firmRepository.save(firmEntity);
         //shopRepository.save(shopEntity);
         orderRepository.save(orderEntity);
@@ -163,7 +163,7 @@ public class OrderServiceImpl implements OrderService {
         OrderProductsDTO dto = new OrderProductsDTO();
         dto.setProductId(orderProductEntity.getProduct().getId());
         dto.setProductName(orderProductEntity.getProduct().getProductName());
-        dto.setProductSaleType(orderProductEntity.getProduct().getUnitOfMeasurement());
+        dto.setUnitOfMeasurement(orderProductEntity.getProduct().getUnitOfMeasurement());
         dto.setProductCount(orderProductEntity.getCountProducts());
         dto.setProductAccepted(orderProductEntity.getAccepted());
         return dto;
@@ -174,6 +174,10 @@ public class OrderServiceImpl implements OrderService {
         dto.setOrderId(orderEntity.getId());
         dto.setRegisterNumber(orderEntity.getRegisterNumber());
         dto.setStatus(orderEntity.getStatus());
+        dto.setFirmId(orderEntity.getFirmEntity().getId());
+        dto.setFirmName(orderEntity.getFirmEntity().getFirmName());
+        dto.setShopId(orderEntity.getShopEntity().getId());
+        dto.setShopName(orderEntity.getShopEntity().getShopName());
         dto.setCount(orderEntity.getOrderedProductsCount());
         return dto;
     }
