@@ -15,6 +15,8 @@ public class OrderDTO {
 
     private int count;
 
+    private Integer paymentType;
+
     private Long firmId;
 
     private String firmName;
@@ -85,5 +87,13 @@ public class OrderDTO {
 
     public void setShopName(String shopName) {
         this.shopName = shopName;
+    }
+
+    public Integer getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(Integer paymentType) {
+        this.paymentType = paymentType;
     }
 }

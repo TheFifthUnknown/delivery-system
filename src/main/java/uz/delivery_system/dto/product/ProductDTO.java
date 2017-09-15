@@ -5,9 +5,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * Created by Nodirbek on 15.07.2017.
- */
 public class ProductDTO {
 
     private Long id;

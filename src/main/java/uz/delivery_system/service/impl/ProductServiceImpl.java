@@ -9,11 +9,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import uz.delivery_system.dto.product.ProductDTO;
 import uz.delivery_system.dto.product.ProductDetailsDTO;
+import uz.delivery_system.dto.product.ProductSliderDTO;
 import uz.delivery_system.entity.LogoImageEntity;
 import uz.delivery_system.entity.ProductEntity;
+import uz.delivery_system.entity.SliderImageEntity;
+import uz.delivery_system.entity.UserEntity;
 import uz.delivery_system.exceptions.NotFoundException;
 import uz.delivery_system.repository.CategoryRepository;
 import uz.delivery_system.repository.ProductRepository;
+import uz.delivery_system.repository.SliderImageRepository;
 import uz.delivery_system.repository.UserRepository;
 import uz.delivery_system.service.ProductService;
 import uz.delivery_system.storage.StorageService;
@@ -40,6 +44,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private SliderImageRepository sliderImageRepository;
+
     private String IMAGE_URL = "http://dpx.uz:8080/api/v1/files/";
 
     @Override
@@ -61,7 +69,11 @@ public class ProductServiceImpl implements ProductService {
     public void update(ProductDTO productDTO) {
         ProductEntity productEntity = productRepository.findOne(productDTO.getId());
         if (productEntity == null) {
-            throw new NotFoundException(1, "Bunday maxsulot maavjud emas!");
+            throw new NotFoundException(1, "Bunday maxsulot mavjud emas!");
+        }
+        if(!productDTO.getFile().isEmpty()){
+            String filename = storageService.store(productDTO.getFile());
+            productEntity.setProductLogo(getImageEntity(filename, productEntity));
         }
         BeanUtils.copyProperties(productDTO, productEntity);
         productRepository.save(productEntity);
@@ -90,7 +102,7 @@ public class ProductServiceImpl implements ProductService {
         ProductDetailsDTO dto = new ProductDetailsDTO();
         BeanUtils.copyProperties(productEntity, dto);
         dto.setProductLogoUrl(productEntity.getLogoUrl());
-        dto.setSliders(productEntity.getSliderImageNames());
+        dto.setSliders(productEntity.getSliderDetails());
         dto.setProductCategory(productEntity.getCategory().getCategoryName());
         dto.setProductFirm(productEntity.getFirm().getFirmName());
         return dto;
@@ -98,7 +110,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<ProductDetailsDTO> listProductDetails(Pageable pageable) {
-        Page<ProductEntity> productEntities = productRepository.findAll(pageable);
+        UserEntity userEntity = userRepository.findOne(SecurityUtils.getUserId());
+        if (userEntity.getFirm()==null){
+            throw new NullPointerException("Firma logini bilan kiring");
+        }
+        Page<ProductEntity> productEntities = productRepository.findByFirmId(userEntity.getFirm().getId(),pageable);
         List<ProductDetailsDTO> list = new ArrayList<>();
         productEntities.forEach(productEntity ->
             list.add(getProductDetailsDTO(productEntity))
@@ -114,6 +130,32 @@ public class ProductServiceImpl implements ProductService {
             list.add(getProductDetailsDTO(productEntity));
         });
         return list;
+    }
+
+    @Override
+    public void addSliderImage(Long id, ProductSliderDTO dto) {
+        ProductEntity productEntity = productRepository.findOne(id);
+        if (productEntity == null) {
+            throw new NotFoundException(1,"Bunday maxsulot topilmadi");
+        }
+        String filename = storageService.store(dto.getFile());
+        SliderImageEntity sliderImageEntity = getSliderImageEntity(productEntity, filename, dto.getTitle());
+        productEntity.getSlides().add(sliderImageEntity);
+        productRepository.save(productEntity);
+    }
+
+    @Override
+    public void removeSliderItem(Long imageId) {
+        sliderImageRepository.delete(imageId);
+    }
+
+    private SliderImageEntity getSliderImageEntity(ProductEntity productEntity, String filename, String title) {
+        SliderImageEntity sliderImageEntity = new SliderImageEntity();
+        sliderImageEntity.setUploadDate(new Date());
+        sliderImageEntity.setProduct(productEntity);
+        sliderImageEntity.setUrl(IMAGE_URL + filename);
+        sliderImageEntity.setTitle(title);
+        return sliderImageEntity;
     }
 
     private ProductEntity getProductEntity(ProductDTO productDTO) {

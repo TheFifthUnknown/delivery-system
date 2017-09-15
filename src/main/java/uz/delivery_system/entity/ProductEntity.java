@@ -113,11 +113,11 @@ public class ProductEntity extends BaseEntity{
         this.slides = slides;
     }
 
-    public List<SliderDetails> getSliderImageNames(){
+    public List<SliderDetails> getSliderDetails(){
         List<SliderDetails> list = new ArrayList<>();
         for (SliderImageEntity entity :
                 slides) {
-            list.add(new SliderDetails(entity.getUrl(), entity.getTitle()));
+            list.add(new SliderDetails(entity.getId(),entity.getUrl(), entity.getTitle()));
         }
         return list;
     }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import uz.delivery_system.dto.product.ProductDTO;
 import uz.delivery_system.dto.product.ProductDetailsDTO;
+import uz.delivery_system.dto.product.ProductSliderDTO;
 import uz.delivery_system.service.ProductService;
 
 import java.util.List;
@@ -55,10 +56,26 @@ public class ProductController {
         return new ResponseEntity<>(dtoPage, HttpStatus.OK);
     }
 
-    // For Android-Shop client
+    // Role Shop_Manager
     @RequestMapping(method = RequestMethod.GET, value = "/firm/{firmId}/category/{category}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> listCategoryProducts(@PathVariable Long firmId, @PathVariable Long category){
         List<ProductDetailsDTO> dtoPage = productService.listCategoryProducts(firmId, category);
         return new ResponseEntity<>(dtoPage, HttpStatus.OK);
     }
+
+    // Role Firm_Manager
+    @RequestMapping(method = RequestMethod.POST, value = "{id}/slider")
+    public ResponseEntity<?> addImageToSlider(@PathVariable Long id, ProductSliderDTO dto){
+        productService.addSliderImage(id, dto);
+        return ResponseEntity.ok("Slider uchun yangi rasm qo'shildi");
+    }
+
+    // Role Firm_Manager
+    @RequestMapping(method = RequestMethod.DELETE, value = "slider/{imageId}")
+    public ResponseEntity<?> removeSliderItem(@PathVariable Long imageId){
+        productService.removeSliderItem(imageId);
+        return ResponseEntity.ok("Slider uchun yangi rasm qo'shildi");
+    }
+
+
 }

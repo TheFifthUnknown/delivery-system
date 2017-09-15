@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import uz.delivery_system.dto.product.ProductDTO;
 import uz.delivery_system.dto.product.ProductDetailsDTO;
+import uz.delivery_system.dto.product.ProductSliderDTO;
 
 import java.util.List;
 
@@ -23,4 +24,8 @@ public interface ProductService {
     Page<ProductDetailsDTO> listProductDetails(Pageable pageable);
 
     List<ProductDetailsDTO> listCategoryProducts(Long firmId, Long categoryId);
+
+    void addSliderImage(Long id, ProductSliderDTO file);
+
+    void removeSliderItem(Long imageId);
 }
