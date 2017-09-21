@@ -24,6 +24,8 @@ public class ShopDetailsDTO extends ResourceSupport{
     private String shopOrienter;
     private String shopINN;
     private String shopOwnerPassport;
+    private Long dpxContractNumber;
+
 
     public Long getShopId() {
         return shopId;
@@ -143,5 +145,13 @@ public class ShopDetailsDTO extends ResourceSupport{
 
     public void setShopOwnerPassport(String shopOwnerPassport) {
         this.shopOwnerPassport = shopOwnerPassport;
+    }
+
+    public Long getDpxContractNumber() {
+        return dpxContractNumber;
+    }
+
+    public void setDpxContractNumber(Long dpxContractNumber) {
+        this.dpxContractNumber = dpxContractNumber;
     }
 }

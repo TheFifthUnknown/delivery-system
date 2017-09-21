@@ -34,6 +34,9 @@ public class FirmEntity extends UpdatableBaseEntity{
     @Column(name = "blocked", columnDefinition = "boolean default FALSE")
     private Boolean blocked = Boolean.FALSE;
 
+    @Column(name = "deliveriable", columnDefinition = "boolean default TRUE")
+    private boolean deliveriable = Boolean.TRUE;
+
     @Column(name = "shopContractNumber")
     private Long shopContractNumber = 0l;
 
@@ -132,5 +135,13 @@ public class FirmEntity extends UpdatableBaseEntity{
 
     public void setDpxContractNumber(Long dpxContractNumber) {
         this.dpxContractNumber = dpxContractNumber;
+    }
+
+    public boolean isDeliveriable() {
+        return deliveriable;
+    }
+
+    public void setDeliveriable(boolean deliveriable) {
+        this.deliveriable = deliveriable;
     }
 }

@@ -44,6 +44,8 @@ public class FirmRegistrationDTO {
 
     private Long dpxContractNumber;
 
+    private boolean deliveriable;
+
     public String getFirmName() {
         return firmName;
     }
@@ -138,5 +140,13 @@ public class FirmRegistrationDTO {
 
     public void setDpxContractNumber(Long dpxContractNumber) {
         this.dpxContractNumber = dpxContractNumber;
+    }
+
+    public boolean isDeliveriable() {
+        return deliveriable;
+    }
+
+    public void setDeliveriable(boolean deliveriable) {
+        this.deliveriable = deliveriable;
     }
 }

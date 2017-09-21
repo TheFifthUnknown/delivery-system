@@ -6,9 +6,14 @@ package uz.delivery_system.dto.firm;
 public class CategoryFirmsDTO {
 
     private long id;
+
     private String firmName;
+
     private int productCount;
+
     private String imageUrl;
+
+    private boolean deliveriable;
 
     public long getId() {
         return id;
@@ -40,5 +45,13 @@ public class CategoryFirmsDTO {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public boolean isDeliveriable() {
+        return deliveriable;
+    }
+
+    public void setDeliveriable(boolean deliveriable) {
+        this.deliveriable = deliveriable;
     }
 }

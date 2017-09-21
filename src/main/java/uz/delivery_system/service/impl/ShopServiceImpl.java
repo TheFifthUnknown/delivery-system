@@ -86,6 +86,7 @@ public class ShopServiceImpl implements ShopService {
             throw new NotFoundException(1,"Bunday region mavjud emas!");
         }
         BeanUtils.copyProperties(dto, shopEntity);
+        BeanUtils.copyProperties(dto, shopEntity.getManeger());
         shopEntity.setRegion(regionEntity);
         shopRepository.save(shopEntity);
     }

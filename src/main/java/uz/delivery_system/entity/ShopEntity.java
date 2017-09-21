@@ -3,10 +3,7 @@ package uz.delivery_system.entity;
 import uz.delivery_system.entity.base.UpdatableBaseEntity;
 import uz.delivery_system.utils.TableName;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Nodirbek on 11.07.2017.

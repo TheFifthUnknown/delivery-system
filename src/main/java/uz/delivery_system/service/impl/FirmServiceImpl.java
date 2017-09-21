@@ -66,6 +66,7 @@ public class FirmServiceImpl implements FirmService {
             throw new NotFoundException(3, "Bunday firma topilmadi");
         }
         BeanUtils.copyProperties(dto, firmEntity);
+        BeanUtils.copyProperties(dto, firmEntity.getManeger());
         firmRepository.save(firmEntity);
     }
 
@@ -105,6 +106,7 @@ public class FirmServiceImpl implements FirmService {
                 dto.setFirmName(firmEntity.getFirmName());
                 dto.setProductCount(count);
                 dto.setImageUrl(firmEntity.getFirmLogoUrl());
+                dto.setDeliveriable(firmEntity.isDeliveriable());
                 list.add(dto);
             }
         });
@@ -159,6 +161,7 @@ public class FirmServiceImpl implements FirmService {
         dto.setFirmId(firmEntity.getId());
         dto.setManagerId(firmEntity.getManeger().getId());
         dto.setManagerName(firmEntity.getManeger().fullName());
+        dto.setDeliveriable(firmEntity.isDeliveriable());
         return dto;
     }
 }

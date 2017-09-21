@@ -180,6 +180,8 @@ public class OrderServiceImpl implements OrderService {
         dto.setShopName(orderEntity.getShopEntity().getShopName());
         dto.setCount(orderEntity.getOrderedProductsCount());
         dto.setPaymentType(orderEntity.getPaymentType());
+        dto.setRegionId(orderEntity.getShopEntity().getRegion().getId());
+        dto.setRegionName(orderEntity.getShopEntity().getRegion().getName());
         return dto;
     }
 }

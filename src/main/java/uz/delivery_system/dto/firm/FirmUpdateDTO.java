@@ -7,6 +7,7 @@ import javax.validation.constraints.Size;
  * Created by Nodirbek on 08.07.2017.
  */
 public class FirmUpdateDTO {
+
     @NotNull
     private Long firmId;
 
@@ -23,6 +24,23 @@ public class FirmUpdateDTO {
     private String firmExtraContact;
 
     private String firmEmail;
+
+    @NotNull
+    private boolean deliveriable;
+
+    @NotNull
+    private Long dpxContractNumber;
+
+    // Manager's info
+    @NotNull
+    @Size(min=2, max=50)
+    private String firstname;
+
+    @NotNull
+    @Size(min=2, max=50)
+    private String lastname;
+
+    private String phone;
 
     public Long getFirmId() {
         return firmId;
@@ -70,5 +88,45 @@ public class FirmUpdateDTO {
 
     public void setFirmEmail(String firmEmail) {
         this.firmEmail = firmEmail;
+    }
+
+    public boolean isDeliveriable() {
+        return deliveriable;
+    }
+
+    public void setDeliveriable(boolean deliveriable) {
+        this.deliveriable = deliveriable;
+    }
+
+    public Long getDpxContractNumber() {
+        return dpxContractNumber;
+    }
+
+    public void setDpxContractNumber(Long dpxContractNumber) {
+        this.dpxContractNumber = dpxContractNumber;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

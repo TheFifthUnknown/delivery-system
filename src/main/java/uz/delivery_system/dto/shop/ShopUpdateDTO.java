@@ -17,6 +17,8 @@ public class ShopUpdateDTO {
 
     private String shopAddress;
 
+    private String shopOrienter;
+
     @NotNull
     @Size(min=2, max=50)
     private String shopContact;
@@ -26,15 +28,24 @@ public class ShopUpdateDTO {
     private String shopEmail;
 
     @NotNull
-    private Long shopRegionId;
-
-    @NotNull
     private String shopINN;
 
     @NotNull
     private String shopOwnerPassport;
 
-    private String shopOrienter;
+    @NotNull
+    private Long shopRegionId;
+
+    // Manager's info
+    @NotNull
+    @Size(min=2, max=50)
+    private String firstname;
+
+    @NotNull
+    @Size(min=2, max=50)
+    private String lastname;
+
+    private String phone;
 
     public Long getShopId() {
         return shopId;
@@ -115,4 +126,29 @@ public class ShopUpdateDTO {
     public void setShopOrienter(String shopOrienter) {
         this.shopOrienter = shopOrienter;
     }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
 }

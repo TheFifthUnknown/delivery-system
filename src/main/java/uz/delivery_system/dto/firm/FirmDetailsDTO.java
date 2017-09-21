@@ -32,6 +32,10 @@ public class FirmDetailsDTO extends ResourceSupport{
 
     private Boolean active;
 
+    private boolean deliveriable;
+
+    private Long dpxContractNumber;
+
     public Long getFirmId() {
         return firmId;
     }
@@ -110,5 +114,21 @@ public class FirmDetailsDTO extends ResourceSupport{
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public boolean isDeliveriable() {
+        return deliveriable;
+    }
+
+    public void setDeliveriable(boolean deliveriable) {
+        this.deliveriable = deliveriable;
+    }
+
+    public Long getDpxContractNumber() {
+        return dpxContractNumber;
+    }
+
+    public void setDpxContractNumber(Long dpxContractNumber) {
+        this.dpxContractNumber = dpxContractNumber;
     }
 }
