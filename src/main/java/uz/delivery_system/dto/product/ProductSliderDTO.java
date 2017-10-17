@@ -5,10 +5,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 
-/**
- * Created by Nodirbek on 15.09.2017.
- */
 public class ProductSliderDTO {
+
+    @NotNull
+    private Long productId;
 
     @NotEmpty
     private MultipartFile file;
@@ -30,5 +30,13 @@ public class ProductSliderDTO {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 }

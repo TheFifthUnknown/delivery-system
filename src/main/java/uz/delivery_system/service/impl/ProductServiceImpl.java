@@ -53,16 +53,14 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public void addProduct(ProductDTO productDTO) {
-//        CategoryEntity categoryEntity = categoryRepository.findOne(productDTO.getCategoryId());
-//        if (categoryEntity == null) {
-//            throw  new NotFoundException(1, "Mavjud bo'lmagan kategoriya ko'rsatildi");
-//        }
-        ProductEntity productEntity =  getProductEntity(productDTO);
-        String filename = storageService.store(productDTO.getFile());
-        productEntity.setProductLogo(getImageEntity(filename, productEntity));
-        productRepository.save(productEntity);
-//        categoryRepository.save(categoryEntity);
-//        categoryEntity.getProductEntities().add(productEntity);
+        if (productDTO.getId()!=null){
+            update(productDTO);
+        }else{
+            ProductEntity productEntity =  getProductEntity(productDTO);
+            String filename = storageService.store(productDTO.getFile());
+            productEntity.setProductLogo(getImageEntity(filename, productEntity));
+            productRepository.save(productEntity);
+        }
     }
 
     @Override
@@ -71,7 +69,7 @@ public class ProductServiceImpl implements ProductService {
         if (productEntity == null) {
             throw new NotFoundException(1, "Bunday maxsulot mavjud emas!");
         }
-        if(!productDTO.getFile().isEmpty()){
+        if(productDTO.getFile()!= null){
             String filename = storageService.store(productDTO.getFile());
             productEntity.setProductLogo(getImageEntity(filename, productEntity));
         }
@@ -133,8 +131,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void addSliderImage(Long id, ProductSliderDTO dto) {
-        ProductEntity productEntity = productRepository.findOne(id);
+    public void addSliderImage(ProductSliderDTO dto) {
+        ProductEntity productEntity = productRepository.findOne(dto.getProductId());
         if (productEntity == null) {
             throw new NotFoundException(1,"Bunday maxsulot topilmadi");
         }

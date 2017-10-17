@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import uz.delivery_system.dto.firm.CategoryFirmsDTO;
 import uz.delivery_system.dto.firm.FirmDetailsDTO;
@@ -80,6 +81,12 @@ public class FirmController {
     public ResponseEntity<?> delete(@PathVariable Long id) {
         firmService.deleteFirmWithManager(id);
         return new ResponseEntity("Firma bazadan o\'chirildi", HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/logo")
+    public ResponseEntity<?> changeLogo(MultipartFile file){
+        firmService.changeFirmLogo(file);
+        return ResponseEntity.ok("Firmani logotipi yangilandi");
     }
 
     private void validateRegistration(FirmRegistrationDTO registrationDTO) {

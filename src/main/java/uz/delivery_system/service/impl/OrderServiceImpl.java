@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import uz.delivery_system.dto.order.OrderProductsDTO;
 import uz.delivery_system.dto.order.CreateOrderDTO;
 import uz.delivery_system.dto.order.OrderDTO;
+import uz.delivery_system.dto.order.ProductCount;
 import uz.delivery_system.entity.*;
 import uz.delivery_system.enums.UserRole;
 import uz.delivery_system.exceptions.NotFoundException;
@@ -52,26 +53,30 @@ public class OrderServiceImpl implements OrderService {
         }
         OrderEntity orderEntity = new OrderEntity();
         List<OrderProductEntity> orderProductEntities = new ArrayList<>();
-        dto.getProductCounts().forEach(productCount -> {
+        int totalSum = 0;
+        for(ProductCount productCount : dto.getProductCounts()) {
             OrderProductEntity orderProductEntity = new OrderProductEntity();
             ProductEntity productEntity = productRepository.findOne(productCount.getProductId());
             if (productEntity != null) {
                 orderProductEntity.setProduct(productEntity);
                 orderProductEntity.setAccepted(Boolean.TRUE);
-                orderProductEntity.setCountProducts(productCount.getCount());
+                orderProductEntity.setCountProduct(productCount.getCount());
+                orderProductEntity.setPriceProduct(productCount.getPrice());
                 orderProductEntity.setOrder(orderEntity);
+                totalSum += productCount.getCount() * productCount.getPrice();
             }
             orderProductEntities.add(orderProductEntity);
-        });
+        }
         // Set Order fields
         orderEntity.setFirmEntity(firmEntity);
         orderEntity.setShopEntity(shopEntity);
-        orderEntity.setDeliverDate(new Date());
+        orderEntity.setOrderedDate(new Date());
         orderEntity.setOrderProducts(orderProductEntities);
         orderEntity.setStatus((short)0);
         orderEntity.setRegisterNumber(firmEntity.getShopContractNumber()+1);
         orderEntity.setOrderedProductsCount(dto.getProductCounts().size());
         orderEntity.setPaymentType(dto.getPaymentType());
+        orderEntity.setOrderedProductsCost(totalSum);
 
         firmEntity.setShopContractNumber(firmEntity.getShopContractNumber()+1);
         firmRepository.save(firmEntity);
@@ -139,6 +144,7 @@ public class OrderServiceImpl implements OrderService {
             if(status == 3){
                 message = "Buyurtma yetkazilganligi tasdiqlandi!";
                 orderEntity.setStatus(status);
+                orderEntity.setDeliverDate(new Date());
             }
         }
         orderRepository.save(orderEntity);
@@ -164,8 +170,9 @@ public class OrderServiceImpl implements OrderService {
         dto.setProductId(orderProductEntity.getProduct().getId());
         dto.setProductName(orderProductEntity.getProduct().getProductName());
         dto.setUnitOfMeasurement(orderProductEntity.getProduct().getUnitOfMeasurement());
-        dto.setProductCount(orderProductEntity.getCountProducts());
+        dto.setProductCount(orderProductEntity.getCountProduct());
         dto.setProductAccepted(orderProductEntity.getAccepted());
+        dto.setProductPrice(orderProductEntity.getPriceProduct());
         return dto;
     }
 

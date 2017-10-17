@@ -18,8 +18,11 @@ public class OrderProductEntity extends BaseEntity {
     @ManyToOne
     private ProductEntity product;
 
-    @Column(name = "countProducts")
-    private int countProducts;
+    @Column(name = "countProduct")
+    private int countProduct;
+
+    @Column(name = "priceProduct")
+    private Long priceProduct;
 
     @Column(name = "accepted")
     private Boolean accepted = Boolean.TRUE;
@@ -40,12 +43,12 @@ public class OrderProductEntity extends BaseEntity {
         this.product = product;
     }
 
-    public int getCountProducts() {
-        return countProducts;
+    public int getCountProduct() {
+        return countProduct;
     }
 
-    public void setCountProducts(int countProducts) {
-        this.countProducts = countProducts;
+    public void setCountProduct(int countProduct) {
+        this.countProduct = countProduct;
     }
 
     public Boolean getAccepted() {
@@ -54,5 +57,13 @@ public class OrderProductEntity extends BaseEntity {
 
     public void setAccepted(Boolean accepted) {
         this.accepted = accepted;
+    }
+
+    public Long getPriceProduct() {
+        return priceProduct;
+    }
+
+    public void setPriceProduct(Long priceProduct) {
+        this.priceProduct = priceProduct;
     }
 }

@@ -3,6 +3,7 @@ package uz.delivery_system.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import uz.delivery_system.entity.OrderEntity;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,4 +18,6 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
     List<OrderEntity> findByFirmEntityIdOrderByIdDesc(Long id);
 
     OrderEntity findByIdAndFirmEntityId(Long id, Long firmId);
+
+    List<OrderEntity> findByFirmEntityIdAndOrderedDateAfter(Long id, Date date);
 }

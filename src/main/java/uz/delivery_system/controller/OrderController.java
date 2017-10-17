@@ -51,5 +51,4 @@ public class OrderController {
         String message = orderService.acceptProduct(id, productId, accepted);
         return ResponseEntity.ok(message);
     }
-
 }

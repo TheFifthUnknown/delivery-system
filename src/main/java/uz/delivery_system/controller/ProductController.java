@@ -29,7 +29,8 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> create(@Validated ProductDTO productDTO){
         productService.addProduct(productDTO);
-        return new ResponseEntity<>("Maxsulot ro'yhatga qo'shildi", HttpStatus.OK);
+        String message = (productDTO.getId() == null) ? "Maxsulot ro'yhatga qo'shildi":"Maxsulot ma'lumotlari yangilandi";
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
@@ -64,9 +65,9 @@ public class ProductController {
     }
 
     // Role Firm_Manager
-    @RequestMapping(method = RequestMethod.POST, value = "{id}/slider")
-    public ResponseEntity<?> addImageToSlider(@PathVariable Long id, ProductSliderDTO dto){
-        productService.addSliderImage(id, dto);
+    @RequestMapping(method = RequestMethod.POST, value = "/slider")
+    public ResponseEntity<?> addImageToSlider(ProductSliderDTO dto){
+        productService.addSliderImage(dto);
         return ResponseEntity.ok("Slider uchun yangi rasm qo'shildi");
     }
 
@@ -74,8 +75,7 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.DELETE, value = "slider/{imageId}")
     public ResponseEntity<?> removeSliderItem(@PathVariable Long imageId){
         productService.removeSliderItem(imageId);
-        return ResponseEntity.ok("Slider uchun yangi rasm qo'shildi");
+        return ResponseEntity.ok("Rasm sliderdan o'chirildi");
     }
-
 
 }

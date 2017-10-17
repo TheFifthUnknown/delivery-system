@@ -33,6 +33,18 @@ public class ShopEntity extends UpdatableBaseEntity {
     @Column(name = "shopINN")
     private String shopINN;
 
+    @Column(name="shopAccountNumber")
+    private String shopAccountNumber;
+
+    @Column(name = "shopMFO")
+    private String shopMFO;
+
+    @Column(name = "shopActivity")
+    private String shopActivity;
+
+    @Column(name = "shopType")
+    private Integer shopType;
+
     @Column(name = "shopOwnerPassport")
     private String shopOwnerPassport;
 
@@ -153,5 +165,37 @@ public class ShopEntity extends UpdatableBaseEntity {
 
     public void setDpxContractNumber(Long dpxContractNumber) {
         this.dpxContractNumber = dpxContractNumber;
+    }
+
+    public String getShopAccountNumber() {
+        return shopAccountNumber;
+    }
+
+    public void setShopAccountNumber(String shopAccountNumber) {
+        this.shopAccountNumber = shopAccountNumber;
+    }
+
+    public String getShopMFO() {
+        return shopMFO;
+    }
+
+    public void setShopMFO(String shopMFO) {
+        this.shopMFO = shopMFO;
+    }
+
+    public String getShopActivity() {
+        return shopActivity;
+    }
+
+    public void setShopActivity(String shopActivity) {
+        this.shopActivity = shopActivity;
+    }
+
+    public Integer getShopType() {
+        return shopType;
+    }
+
+    public void setShopType(Integer shopType) {
+        this.shopType = shopType;
     }
 }

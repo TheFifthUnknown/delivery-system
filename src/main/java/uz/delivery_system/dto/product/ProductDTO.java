@@ -25,6 +25,8 @@ public class ProductDTO {
 
     private String unitOfMeasurement;
 
+    private String saleType;
+
     public Long getId() {
         return id;
     }
@@ -79,5 +81,13 @@ public class ProductDTO {
 
     public void setFile(MultipartFile file) {
         this.file = file;
+    }
+
+    public String getSaleType() {
+        return saleType;
+    }
+
+    public void setSaleType(String saleType) {
+        this.saleType = saleType;
     }
 }

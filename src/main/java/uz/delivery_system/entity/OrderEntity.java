@@ -41,6 +41,9 @@ public class OrderEntity extends BaseEntity{
     @Column(name = "orderedProductsCount")
     private Integer orderedProductsCount;
 
+    @Column(name = "orderedProductsCost")
+    private Integer orderedProductsCost;
+
     @OneToMany(mappedBy = "order", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderProductEntity> orderProducts;
 
@@ -114,5 +117,13 @@ public class OrderEntity extends BaseEntity{
 
     public void setPaymentType(int paymentType) {
         this.paymentType = paymentType;
+    }
+
+    public Integer getOrderedProductsCost() {
+        return orderedProductsCost;
+    }
+
+    public void setOrderedProductsCost(Integer orderedProductsCost) {
+        this.orderedProductsCost = orderedProductsCost;
     }
 }

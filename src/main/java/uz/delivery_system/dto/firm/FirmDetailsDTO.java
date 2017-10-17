@@ -36,6 +36,8 @@ public class FirmDetailsDTO extends ResourceSupport{
 
     private Long dpxContractNumber;
 
+    private String firmLogoUrl;
+
     public Long getFirmId() {
         return firmId;
     }
@@ -131,4 +133,13 @@ public class FirmDetailsDTO extends ResourceSupport{
     public void setDpxContractNumber(Long dpxContractNumber) {
         this.dpxContractNumber = dpxContractNumber;
     }
+
+    public String getFirmLogoUrl() {
+        return firmLogoUrl;
+    }
+
+    public void setFirmLogoUrl(String firmLogoUrl) {
+        this.firmLogoUrl = firmLogoUrl;
+    }
+
 }

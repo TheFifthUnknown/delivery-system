@@ -37,6 +37,14 @@ public class ShopRegistrationDTO {
 
     private Long dpxContractNumber = 0l;
 
+    private String shopAccountNumber;
+
+    private String shopMFO;
+
+    private String shopActivity;
+
+    private Integer shopType;
+
     // Shop manager informations
 
     @NotNull
@@ -183,5 +191,37 @@ public class ShopRegistrationDTO {
 
     public void setDpxContractNumber(Long dpxContractNumber) {
         this.dpxContractNumber = dpxContractNumber;
+    }
+
+    public String getShopAccountNumber() {
+        return shopAccountNumber;
+    }
+
+    public void setShopAccountNumber(String shopAccountNumber) {
+        this.shopAccountNumber = shopAccountNumber;
+    }
+
+    public String getShopMFO() {
+        return shopMFO;
+    }
+
+    public void setShopMFO(String shopMFO) {
+        this.shopMFO = shopMFO;
+    }
+
+    public String getShopActivity() {
+        return shopActivity;
+    }
+
+    public void setShopActivity(String shopActivity) {
+        this.shopActivity = shopActivity;
+    }
+
+    public Integer getShopType() {
+        return shopType;
+    }
+
+    public void setShopType(Integer shopType) {
+        this.shopType = shopType;
     }
 }

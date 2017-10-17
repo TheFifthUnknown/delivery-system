@@ -13,6 +13,9 @@ public class ProductCount {
     @NotNull
     private int count;
 
+    @NotNull
+    private Long price;
+
     public Long getProductId() {
         return productId;
     }
@@ -27,5 +30,13 @@ public class ProductCount {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
     }
 }

@@ -25,7 +25,7 @@ public interface ProductService {
 
     List<ProductDetailsDTO> listCategoryProducts(Long firmId, Long categoryId);
 
-    void addSliderImage(Long id, ProductSliderDTO file);
+    void addSliderImage(ProductSliderDTO file);
 
     void removeSliderItem(Long imageId);
 }

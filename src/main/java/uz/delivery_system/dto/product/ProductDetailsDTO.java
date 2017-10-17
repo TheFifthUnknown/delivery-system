@@ -25,6 +25,8 @@ public class ProductDetailsDTO {
 
     private String unitOfMeasurement;
 
+    private String saleType;
+
     public Long getId() {
         return id;
     }
@@ -95,5 +97,13 @@ public class ProductDetailsDTO {
 
     public void setUnitOfMeasurement(String unitOfMeasurement) {
         this.unitOfMeasurement = unitOfMeasurement;
+    }
+
+    public String getSaleType() {
+        return saleType;
+    }
+
+    public void setSaleType(String saleType) {
+        this.saleType = saleType;
     }
 }

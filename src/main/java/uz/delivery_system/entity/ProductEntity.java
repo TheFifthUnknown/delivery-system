@@ -33,6 +33,9 @@ public class ProductEntity extends BaseEntity{
     @Column(name = "unitOfMeasurement")
     private String unitOfMeasurement;
 
+    @Column(name = "saleType")
+    private String saleType;
+
     @Column(name = "categoryId")
     private Long categoryId;
 
@@ -142,4 +145,11 @@ public class ProductEntity extends BaseEntity{
         this.productLogo = productLogo;
     }
 
+    public String getSaleType() {
+        return saleType;
+    }
+
+    public void setSaleType(String saleType) {
+        this.saleType = saleType;
+    }
 }

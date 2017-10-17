@@ -13,6 +13,8 @@ public class OrderProductsDTO {
 
     private Boolean productAccepted;
 
+    private Long productPrice;
+
     private String unitOfMeasurement;
 
     public Long getProductId() {
@@ -53,5 +55,13 @@ public class OrderProductsDTO {
 
     public void setUnitOfMeasurement(String unitOfMeasurement) {
         this.unitOfMeasurement = unitOfMeasurement;
+    }
+
+    public Long getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Long productPrice) {
+        this.productPrice = productPrice;
     }
 }

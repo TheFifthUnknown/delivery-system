@@ -6,9 +6,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by Nodirbek on 07.07.2017.
- */
 @MappedSuperclass
 public abstract class UpdatableBaseEntity extends BaseEntity implements Serializable {
 
@@ -27,9 +24,11 @@ public abstract class UpdatableBaseEntity extends BaseEntity implements Serializ
     private UserEntity updateUser;
 
     @Column(name = "createDate")
+    @Temporal(TemporalType.DATE)
     private Date createDate;
 
     @Column(name = "updateDate")
+    @Temporal(TemporalType.DATE)
     private Date updateDate;
 
     public Long getCreateUserId() {

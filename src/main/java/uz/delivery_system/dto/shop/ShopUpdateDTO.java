@@ -36,6 +36,15 @@ public class ShopUpdateDTO {
     @NotNull
     private Long shopRegionId;
 
+    private String shopAccountNumber;
+
+    private String shopMFO;
+
+    private String shopActivity;
+
+    private Integer shopType;
+
+
     // Manager's info
     @NotNull
     @Size(min=2, max=50)
@@ -46,6 +55,9 @@ public class ShopUpdateDTO {
     private String lastname;
 
     private String phone;
+
+    @NotNull
+    private Long dpxContractNumber;
 
     public Long getShopId() {
         return shopId;
@@ -151,4 +163,43 @@ public class ShopUpdateDTO {
         this.phone = phone;
     }
 
+    public Long getDpxContractNumber() {
+        return dpxContractNumber;
+    }
+
+    public void setDpxContractNumber(Long dpxContractNumber) {
+        this.dpxContractNumber = dpxContractNumber;
+    }
+
+    public String getShopAccountNumber() {
+        return shopAccountNumber;
+    }
+
+    public void setShopAccountNumber(String shopAccountNumber) {
+        this.shopAccountNumber = shopAccountNumber;
+    }
+
+    public String getShopMFO() {
+        return shopMFO;
+    }
+
+    public void setShopMFO(String shopMFO) {
+        this.shopMFO = shopMFO;
+    }
+
+    public String getShopActivity() {
+        return shopActivity;
+    }
+
+    public void setShopActivity(String shopActivity) {
+        this.shopActivity = shopActivity;
+    }
+
+    public Integer getShopType() {
+        return shopType;
+    }
+
+    public void setShopType(Integer shopType) {
+        this.shopType = shopType;
+    }
 }

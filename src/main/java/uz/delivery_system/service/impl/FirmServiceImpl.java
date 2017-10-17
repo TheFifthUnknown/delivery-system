@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import uz.delivery_system.dto.firm.CategoryFirmsDTO;
 import uz.delivery_system.dto.firm.FirmDetailsDTO;
 import uz.delivery_system.dto.firm.FirmRegistrationDTO;
@@ -21,6 +22,7 @@ import uz.delivery_system.exceptions.AlreadyExistException;
 import uz.delivery_system.repository.FirmRepository;
 import uz.delivery_system.repository.UserRepository;
 import uz.delivery_system.service.FirmService;
+import uz.delivery_system.storage.StorageService;
 import uz.delivery_system.utils.SecurityUtils;
 
 import java.util.ArrayList;
@@ -39,6 +41,9 @@ public class FirmServiceImpl implements FirmService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private StorageService storageService;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -134,10 +139,23 @@ public class FirmServiceImpl implements FirmService {
         firmRepository.save(firmEntity);
     }
 
+    @Override
+    public void changeFirmLogo(MultipartFile file) {
+        UserEntity userEntity = userRepository.findOne(SecurityUtils.getUserId());
+        FirmEntity firmEntity = userEntity.getFirm();
+        if (firmEntity == null) {
+            throw new NotFoundException(1,"Firma logini bilan kiring");
+        }
+        String filename = storageService.store(file);
+        firmEntity.setFirmLogoUrl(IMAGE_URL+filename);
+        firmRepository.save(firmEntity);
+    }
+
     private FirmEntity fetchFirmData(FirmRegistrationDTO registrationDTO) {
         FirmEntity firmEntity = new FirmEntity();
         BeanUtils.copyProperties(registrationDTO, firmEntity);
         Date current = new Date();
+        firmEntity.setFirmLogoUrl(IMAGE_URL+"default_firm_avatar.png");
         firmEntity.setCreateDate(current);
         firmEntity.setCreateUserId(SecurityUtils.getUserId());
         return firmEntity;
@@ -164,4 +182,6 @@ public class FirmServiceImpl implements FirmService {
         dto.setDeliveriable(firmEntity.isDeliveriable());
         return dto;
     }
+
+    private final String IMAGE_URL = "http://dpx.uz:8080/api/v1/files/";
 }
