@@ -101,7 +101,7 @@ public class FirmServiceImpl implements FirmService {
         firmEntities.forEach(firmEntity -> {
             int count = 0;
             for (ProductEntity productEntity : firmEntity.getProducts()) {
-                if (productEntity.getCategory().getId() == categoryId){
+                if (productEntity.getCategory().getId().equals(categoryId)){
                     count++;
                 }
             }

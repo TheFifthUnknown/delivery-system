@@ -26,12 +26,9 @@ public class ReportController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/monthly", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> mothlyReport(){
+    public ResponseEntity<?> mothlyReport() {
         ShortReportDTO dto = reportService.getMonthlyReport();
         return ResponseEntity.ok(dto);
     }
-
-
-
 
 }
