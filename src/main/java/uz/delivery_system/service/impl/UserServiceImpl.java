@@ -1,11 +1,14 @@
 package uz.delivery_system.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import uz.delivery_system.dto.user.ChangePasswordDTO;
 import uz.delivery_system.entity.UserEntity;
 import uz.delivery_system.exceptions.NotFoundException;
 import uz.delivery_system.repository.UserRepository;
 import uz.delivery_system.service.UserService;
+import uz.delivery_system.utils.SecurityUtils;
 
 import java.util.Optional;
 
@@ -32,5 +35,15 @@ public class UserServiceImpl implements UserService {
     public Boolean exists(String username) {
         Optional<UserEntity> userEntity = userRepository.findByUsername(username);
         return userEntity.isPresent();
+    }
+
+    @Override
+    public void changePassword(ChangePasswordDTO dto) {
+        UserEntity userEntity = userRepository.findOne(SecurityUtils.getUserId());
+        if (dto.getConfirm().equals(dto.getPassword())){
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            userEntity.setPassword(encoder.encode(dto.getPassword()));
+        }
+        userRepository.save(userEntity);
     }
 }
