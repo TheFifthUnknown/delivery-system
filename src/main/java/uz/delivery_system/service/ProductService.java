@@ -2,6 +2,7 @@ package uz.delivery_system.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import uz.delivery_system.dto.product.ProductAmountDTO;
 import uz.delivery_system.dto.product.ProductDTO;
 import uz.delivery_system.dto.product.ProductDetailsDTO;
 import uz.delivery_system.dto.product.ProductSliderDTO;
@@ -28,4 +29,6 @@ public interface ProductService {
     void addSliderImage(ProductSliderDTO file);
 
     void removeSliderItem(Long imageId);
+
+    void setProductAmount(ProductAmountDTO dto);
 }

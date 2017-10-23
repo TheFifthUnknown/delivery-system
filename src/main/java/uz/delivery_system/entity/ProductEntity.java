@@ -24,11 +24,26 @@ public class ProductEntity extends BaseEntity{
     @Column(name = "info")
     private String productInfo;
 
+    @Column(name = "code")
+    private Integer productCode;
+
+    @Column(name = "brandName")
+    private String productBrandName;
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<SliderImageEntity> slides;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private LogoImageEntity productLogo;
+
+    @Column(name = "amountInStore", columnDefinition = "int default 0")
+    private Integer amountInStore = 0;
+
+    @Column(name = "amountInPending", columnDefinition = "int default 0")
+    private Integer amountInPending = 0;
+
+    @Column(name = "amountInOrder", columnDefinition = "int default 0")
+    private Integer amountInOrder = 0;
 
     @Column(name = "unitOfMeasurement")
     private String unitOfMeasurement;
@@ -151,5 +166,45 @@ public class ProductEntity extends BaseEntity{
 
     public void setSaleType(String saleType) {
         this.saleType = saleType;
+    }
+
+    public Integer getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(Integer productCode) {
+        this.productCode = productCode;
+    }
+
+    public String getProductBrandName() {
+        return productBrandName;
+    }
+
+    public void setProductBrandName(String productBrandName) {
+        this.productBrandName = productBrandName;
+    }
+
+    public Integer getAmountInStore() {
+        return amountInStore;
+    }
+
+    public void setAmountInStore(Integer amountInStore) {
+        this.amountInStore = amountInStore;
+    }
+
+    public Integer getAmountInPending() {
+        return amountInPending;
+    }
+
+    public void setAmountInPending(Integer amountInPending) {
+        this.amountInPending = amountInPending;
+    }
+
+    public Integer getAmountInOrder() {
+        return amountInOrder;
+    }
+
+    public void setAmountInOrder(Integer amountInOrder) {
+        this.amountInOrder = amountInOrder;
     }
 }

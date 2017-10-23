@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import uz.delivery_system.dto.product.ProductAmountDTO;
 import uz.delivery_system.dto.product.ProductDTO;
 import uz.delivery_system.dto.product.ProductDetailsDTO;
 import uz.delivery_system.dto.product.ProductSliderDTO;
@@ -117,7 +118,8 @@ public class ProductServiceImpl implements ProductService {
         productEntities.forEach(productEntity ->
             list.add(getProductDetailsDTO(productEntity))
         );
-        return new PageImpl<>(list);
+        Page<ProductDetailsDTO> page = new PageImpl<>(list, pageable, productEntities.getTotalElements());
+        return page;
     }
 
     @Override
@@ -139,6 +141,16 @@ public class ProductServiceImpl implements ProductService {
         String filename = storageService.store(dto.getFile());
         SliderImageEntity sliderImageEntity = getSliderImageEntity(productEntity, filename, dto.getTitle());
         productEntity.getSlides().add(sliderImageEntity);
+        productRepository.save(productEntity);
+    }
+
+    @Override
+    public void setProductAmount(ProductAmountDTO dto) {
+        ProductEntity productEntity = productRepository.findOne(dto.getProductId());
+        if (productEntity == null) {
+            throw new NotFoundException(1, "Bunday maxsulot mavjud emas!");
+        }
+        productEntity.setAmountInStore(dto.getProductAmount());
         productRepository.save(productEntity);
     }
 

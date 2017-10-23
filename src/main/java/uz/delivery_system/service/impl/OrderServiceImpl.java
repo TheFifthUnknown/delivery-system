@@ -65,7 +65,9 @@ public class OrderServiceImpl implements OrderService {
                 orderProductEntity.setOrder(orderEntity);
                 totalSum += productCount.getCount() * productCount.getPrice();
             }
+            productEntity.setAmountInPending(productEntity.getAmountInPending()+productCount.getCount());
             orderProductEntities.add(orderProductEntity);
+            productRepository.save(productEntity);
         }
         // Set Order fields
         orderEntity.setFirmEntity(firmEntity);
@@ -126,6 +128,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public String changeStatus(Long id, short status) {
         OrderEntity orderEntity = orderRepository.findOne(id);
         short currentStatus = orderEntity.getStatus();
@@ -135,31 +138,80 @@ public class OrderServiceImpl implements OrderService {
             if(status == 1){
                 message = "Buyurtma bekor qilindi!";
                 orderEntity.setStatus(status);
+                decreaseProductsAmountInPending(orderEntity);
             }
             if(status == 2){
                 message = "Buyurtma qabul qilindi!";
                 orderEntity.setStatus(status);
+                chargeProductsAmountFromPendingToStore(orderEntity);
             }
         }else if(currentStatus == 2){
             if(status == 3){
                 message = "Buyurtma yetkazilganligi tasdiqlandi!";
                 orderEntity.setStatus(status);
                 orderEntity.setDeliverDate(new Date());
+                decreaseProductsAmountInOrder(orderEntity);
             }
         }
         orderRepository.save(orderEntity);
         return message;
     }
 
+    private void decreaseProductsAmountInOrder(OrderEntity orderEntity) {
+        for (OrderProductEntity orderProductEntity : orderEntity.getOrderProducts()) {
+            if(orderProductEntity.getAccepted()){
+                ProductEntity productEntity = orderProductEntity.getProduct();
+                productEntity.setAmountInOrder(productEntity.getAmountInOrder() - orderProductEntity.getCountProduct());
+                productRepository.save(productEntity);
+            }
+        }
+    }
+
+    private void chargeProductsAmountFromPendingToStore(OrderEntity orderEntity) {
+        for (OrderProductEntity orderProductEntity : orderEntity.getOrderProducts()) {
+            if(orderProductEntity.getAccepted()){
+                ProductEntity productEntity = orderProductEntity.getProduct();
+                productEntity.setAmountInPending(productEntity.getAmountInPending() - orderProductEntity.getCountProduct());
+                productEntity.setAmountInStore(productEntity.getAmountInStore() - orderProductEntity.getCountProduct());
+                productEntity.setAmountInOrder(productEntity.getAmountInOrder() + orderProductEntity.getCountProduct());
+                productRepository.save(productEntity);
+            }
+        }
+    }
+
+    private void decreaseProductsAmountInPending(OrderEntity orderEntity) {
+        for (OrderProductEntity orderProductEntity : orderEntity.getOrderProducts()) {
+            if(orderProductEntity.getAccepted()){
+                ProductEntity productEntity = orderProductEntity.getProduct();
+                productEntity.setAmountInPending(productEntity.getAmountInPending() - orderProductEntity.getCountProduct());
+                productRepository.save(productEntity);
+            }
+        }
+    }
+
     @Override
+    @Transactional
     public String acceptProduct(Long id, Long productId, Boolean accepted) {
         OrderProductEntity orderProductEntity =
                 orderProductsRepository.findByOrderIdAndProductId(id,productId);
         if (orderProductEntity == null) {
             throw new NotFoundException(1, "Bu buyurtmada ko'rsatildan maxsulot topilmadi");
         }
-        orderProductEntity.setAccepted(accepted);
-        orderProductsRepository.save(orderProductEntity);
+        /*
+        Avvalgi status o'zgartirilsa, shu maxsulotni amountInPending qiymati o'zgaradi
+         */
+        if(orderProductEntity.getAccepted() != accepted){
+            orderProductEntity.setAccepted(accepted);
+            ProductEntity productEntity = orderProductEntity.getProduct();
+            if(!accepted){
+                productEntity.setAmountInPending(productEntity.getAmountInPending()-orderProductEntity.getCountProduct());
+            }else{
+                productEntity.setAmountInPending(productEntity.getAmountInPending()+orderProductEntity.getCountProduct());
+            }
+            orderProductsRepository.save(orderProductEntity);
+            productRepository.save(productEntity);
+        }
+
         String message = "Maxsulot buyutma"+(accepted ? "ga yetkazib berish uchun qo'shildi" :
                 " maxsulotlari ro'yhatidan olib tashlandi");
         return message;

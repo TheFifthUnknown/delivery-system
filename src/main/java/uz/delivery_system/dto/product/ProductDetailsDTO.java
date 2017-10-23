@@ -21,6 +21,16 @@ public class ProductDetailsDTO {
 
     private String productLogoUrl;
 
+    private Integer productCode;
+
+    private String productBrandName;
+
+    private Integer amountInStore;
+
+    private Integer amountInPending;
+
+    private Integer amountInOrder;
+
     private List<SliderDetails> sliders;
 
     private String unitOfMeasurement;
@@ -106,4 +116,45 @@ public class ProductDetailsDTO {
     public void setSaleType(String saleType) {
         this.saleType = saleType;
     }
+
+    public Integer getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(Integer productCode) {
+        this.productCode = productCode;
+    }
+
+    public String getProductBrandName() {
+        return productBrandName;
+    }
+
+    public void setProductBrandName(String productBrandName) {
+        this.productBrandName = productBrandName;
+    }
+
+    public Integer getAmountInStore() {
+        return amountInStore;
+    }
+
+    public void setAmountInStore(Integer amountInStore) {
+        this.amountInStore = amountInStore;
+    }
+
+    public Integer getAmountInPending() {
+        return amountInPending;
+    }
+
+    public void setAmountInPending(Integer amountInPending) {
+        this.amountInPending = amountInPending;
+    }
+
+    public Integer getAmountInOrder() {
+        return amountInOrder;
+    }
+
+    public void setAmountInOrder(Integer amountInOrder) {
+        this.amountInOrder = amountInOrder;
+    }
+
 }

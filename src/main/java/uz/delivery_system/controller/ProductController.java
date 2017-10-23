@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import uz.delivery_system.dto.product.ProductAmountDTO;
 import uz.delivery_system.dto.product.ProductDTO;
 import uz.delivery_system.dto.product.ProductDetailsDTO;
 import uz.delivery_system.dto.product.ProductSliderDTO;
@@ -49,6 +50,12 @@ public class ProductController {
     public ResponseEntity<?> showProductDetails(@PathVariable Long id){
         ProductDetailsDTO dto = productService.showProductDetails(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/amount", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> showProductDetails(@RequestBody @Validated ProductAmountDTO dto){
+        productService.setProductAmount(dto);
+        return new ResponseEntity<>("Maxsulot miqdori o'zgartirildi", HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

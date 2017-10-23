@@ -20,6 +20,10 @@ public class ProductDTO {
 
     private String productInfo;
 
+    private Integer productCode;
+
+    private String productBrandName;
+
     @NotNull
     private Long categoryId;
 
@@ -89,5 +93,21 @@ public class ProductDTO {
 
     public void setSaleType(String saleType) {
         this.saleType = saleType;
+    }
+
+    public Integer getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(Integer productCode) {
+        this.productCode = productCode;
+    }
+
+    public String getProductBrandName() {
+        return productBrandName;
+    }
+
+    public void setProductBrandName(String productBrandName) {
+        this.productBrandName = productBrandName;
     }
 }
