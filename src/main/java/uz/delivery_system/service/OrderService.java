@@ -20,4 +20,6 @@ public interface OrderService {
     String changeStatus(Long id, short status);
 
     String acceptProduct(Long id, Long productId, Boolean accepted);
+
+    String revertOrder(Long id);
 }

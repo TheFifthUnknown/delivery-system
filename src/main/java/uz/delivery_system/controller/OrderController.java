@@ -51,4 +51,10 @@ public class OrderController {
         String message = orderService.acceptProduct(id, productId, accepted);
         return ResponseEntity.ok(message);
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/revert", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity revertOrder(@PathVariable Long id){
+        String message = orderService.revertOrder(id);
+        return ResponseEntity.ok(message);
+    }
 }

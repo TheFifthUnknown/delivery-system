@@ -157,6 +157,31 @@ public class OrderServiceImpl implements OrderService {
         return message;
     }
 
+    @Override
+    @Transactional
+    public String revertOrder(Long id) {
+        OrderEntity orderEntity = orderRepository.findOne(id);
+        if(orderEntity == null){
+            throw new NotFoundException(1,"Bunday buyurtma mavjud emas");
+        }
+        if (orderEntity.getStatus() != 2){
+            return "Faqat qabul qilindi statusidagi buyurtmalarni qaytarib olish mumkin";
+        }
+        chargeProductsAmountFromOrderToStore(orderEntity);
+        return "Buyurtma qaytarib olindi";
+    }
+
+    private void chargeProductsAmountFromOrderToStore(OrderEntity orderEntity) {
+        for (OrderProductEntity orderProductEntity : orderEntity.getOrderProducts()) {
+            if(orderProductEntity.getAccepted()){
+                ProductEntity productEntity = orderProductEntity.getProduct();
+                productEntity.setAmountInOrder(productEntity.getAmountInOrder() - orderProductEntity.getCountProduct());
+                productEntity.setAmountInStore(productEntity.getAmountInStore() + orderProductEntity.getCountProduct());
+                productRepository.save(productEntity);
+            }
+        }
+    }
+
     private void decreaseProductsAmountInOrder(OrderEntity orderEntity) {
         for (OrderProductEntity orderProductEntity : orderEntity.getOrderProducts()) {
             if(orderProductEntity.getAccepted()){
@@ -216,6 +241,8 @@ public class OrderServiceImpl implements OrderService {
                 " maxsulotlari ro'yhatidan olib tashlandi");
         return message;
     }
+
+
 
     private OrderProductsDTO fetchOrderProducts(OrderProductEntity orderProductEntity) {
         OrderProductsDTO dto = new OrderProductsDTO();
