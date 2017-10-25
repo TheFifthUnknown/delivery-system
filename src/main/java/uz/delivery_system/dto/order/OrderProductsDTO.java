@@ -15,6 +15,10 @@ public class OrderProductsDTO {
 
     private Long productPrice;
 
+    private int productAmountInStore;
+
+    private int productCode;
+
     private String unitOfMeasurement;
 
     public Long getProductId() {
@@ -63,5 +67,21 @@ public class OrderProductsDTO {
 
     public void setProductPrice(Long productPrice) {
         this.productPrice = productPrice;
+    }
+
+    public int getProductAmountInStore() {
+        return productAmountInStore;
+    }
+
+    public void setProductAmountInStore(int productAmountInStore) {
+        this.productAmountInStore = productAmountInStore;
+    }
+
+    public int getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(int productCode) {
+        this.productCode = productCode;
     }
 }

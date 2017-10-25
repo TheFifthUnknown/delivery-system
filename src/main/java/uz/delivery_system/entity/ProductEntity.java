@@ -36,13 +36,13 @@ public class ProductEntity extends BaseEntity{
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private LogoImageEntity productLogo;
 
-    @Column(name = "amountInStore", columnDefinition = "int default 0")
+    @Column(name = "amountInStore", columnDefinition = "int unsigned default 0")
     private Integer amountInStore = 0;
 
-    @Column(name = "amountInPending", columnDefinition = "int default 0")
+    @Column(name = "amountInPending", columnDefinition = "int unsigned default 0")
     private Integer amountInPending = 0;
 
-    @Column(name = "amountInOrder", columnDefinition = "int default 0")
+    @Column(name = "amountInOrder", columnDefinition = "int unsigned default 0")
     private Integer amountInOrder = 0;
 
     @Column(name = "unitOfMeasurement")

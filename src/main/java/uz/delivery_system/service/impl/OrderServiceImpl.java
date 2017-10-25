@@ -168,6 +168,8 @@ public class OrderServiceImpl implements OrderService {
             return "Faqat qabul qilindi statusidagi buyurtmalarni qaytarib olish mumkin";
         }
         chargeProductsAmountFromOrderToStore(orderEntity);
+        orderEntity.setStatus((short)4);
+        orderRepository.save(orderEntity);
         return "Buyurtma qaytarib olindi";
     }
 
@@ -243,12 +245,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
-
     private OrderProductsDTO fetchOrderProducts(OrderProductEntity orderProductEntity) {
         OrderProductsDTO dto = new OrderProductsDTO();
         dto.setProductId(orderProductEntity.getProduct().getId());
         dto.setProductName(orderProductEntity.getProduct().getProductName());
         dto.setUnitOfMeasurement(orderProductEntity.getProduct().getUnitOfMeasurement());
+        dto.setProductAmountInStore(orderProductEntity.getProduct().getAmountInStore());
         dto.setProductCount(orderProductEntity.getCountProduct());
         dto.setProductAccepted(orderProductEntity.getAccepted());
         dto.setProductPrice(orderProductEntity.getPriceProduct());
