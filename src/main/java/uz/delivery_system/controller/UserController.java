@@ -3,10 +3,7 @@ package uz.delivery_system.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import uz.delivery_system.dto.user.ChangePasswordDTO;
 import uz.delivery_system.service.UserService;
 
@@ -38,7 +35,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/change/password", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity changePassword(ChangePasswordDTO dto) {
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDTO dto) {
         userService.changePassword(dto);
         return ResponseEntity.ok("Parol muvaffaqqiyatli o'zgartirildi");
     }

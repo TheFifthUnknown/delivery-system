@@ -1,5 +1,6 @@
 package uz.delivery_system.service.impl;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
         }
         OrderEntity orderEntity = new OrderEntity();
         List<OrderProductEntity> orderProductEntities = new ArrayList<>();
-        int totalSum = 0;
+        long totalSum = 0;
         for(ProductCount productCount : dto.getProductCounts()) {
             OrderProductEntity orderProductEntity = new OrderProductEntity();
             ProductEntity productEntity = productRepository.findOne(productCount.getProductId());
@@ -230,10 +231,13 @@ public class OrderServiceImpl implements OrderService {
         if(orderProductEntity.getAccepted() != accepted){
             orderProductEntity.setAccepted(accepted);
             ProductEntity productEntity = orderProductEntity.getProduct();
+            long sum = orderProductEntity.getCountProduct() * orderProductEntity.getPriceProduct();
             if(!accepted){
                 productEntity.setAmountInPending(productEntity.getAmountInPending()-orderProductEntity.getCountProduct());
+                orderProductEntity.getOrder().setOrderedProductsCost(orderProductEntity.getOrder().getOrderedProductsCost()-sum);
             }else{
                 productEntity.setAmountInPending(productEntity.getAmountInPending()+orderProductEntity.getCountProduct());
+                orderProductEntity.getOrder().setOrderedProductsCost(orderProductEntity.getOrder().getOrderedProductsCost()+sum);
             }
             orderProductsRepository.save(orderProductEntity);
             productRepository.save(productEntity);
@@ -259,15 +263,16 @@ public class OrderServiceImpl implements OrderService {
 
     private OrderDTO fetchOrderDto(OrderEntity orderEntity) {
         OrderDTO dto = new OrderDTO();
+        BeanUtils.copyProperties(orderEntity, dto);
         dto.setOrderId(orderEntity.getId());
-        dto.setRegisterNumber(orderEntity.getRegisterNumber());
-        dto.setStatus(orderEntity.getStatus());
+//        dto.setRegisterNumber(orderEntity.getRegisterNumber());
+//        dto.setStatus(orderEntity.getStatus());
+//        dto.setPaymentType(orderEntity.getPaymentType());
         dto.setFirmId(orderEntity.getFirmEntity().getId());
         dto.setFirmName(orderEntity.getFirmEntity().getFirmName());
         dto.setShopId(orderEntity.getShopEntity().getId());
         dto.setShopName(orderEntity.getShopEntity().getShopName());
         dto.setCount(orderEntity.getOrderedProductsCount());
-        dto.setPaymentType(orderEntity.getPaymentType());
         dto.setRegionId(orderEntity.getShopEntity().getRegion().getId());
         dto.setRegionName(orderEntity.getShopEntity().getRegion().getName());
         return dto;

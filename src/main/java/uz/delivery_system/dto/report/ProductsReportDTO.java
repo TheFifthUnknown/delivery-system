@@ -11,7 +11,7 @@ public class ProductsReportDTO {
 
     private Integer productCode;
 
-    private String saleType;
+    private String unitOfMeasurement;
 
     private String productBrandName;
 
@@ -49,12 +49,12 @@ public class ProductsReportDTO {
         this.productCode = productCode;
     }
 
-    public String getSaleType() {
-        return saleType;
+    public String getUnitOfMeasurement() {
+        return unitOfMeasurement;
     }
 
-    public void setSaleType(String saleType) {
-        this.saleType = saleType;
+    public void setUnitOfMeasurement(String unitOfMeasurement) {
+        this.unitOfMeasurement = unitOfMeasurement;
     }
 
     public String getProductBrandName() {

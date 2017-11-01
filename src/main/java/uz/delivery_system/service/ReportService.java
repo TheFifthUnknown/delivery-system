@@ -1,8 +1,6 @@
 package uz.delivery_system.service;
 
-import uz.delivery_system.dto.report.PeriodOfTimeDTO;
-import uz.delivery_system.dto.report.ProductsReportDTO;
-import uz.delivery_system.dto.report.ShortReportDTO;
+import uz.delivery_system.dto.report.*;
 
 import java.util.List;
 
@@ -15,5 +13,11 @@ public interface ReportService {
 
     ShortReportDTO getMonthlyReport();
 
-    List<ProductsReportDTO> getReportByProduct(PeriodOfTimeDTO dto);
+    List<ProductsReportDTO> getReportByProducts(PeriodOfTimeDTO dto);
+
+    List<ShopsReportDTO> getReportByShops(PeriodOfTimeDTO dto);
+
+    List<FirmsReportDTO> getReportByFirms(PeriodOfTimeDTO dto);
+
+    List<ProductsReportDTO> getReportByFirmProducts(Long firmId, PeriodOfTimeDTO dto);
 }

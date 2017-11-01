@@ -5,45 +5,45 @@ package uz.delivery_system.dto.report;
  */
 public class PaymentType {
 
-    private int cash;
+    private long cash;
 
-    private int cards;
+    private long cards;
 
-    private int account;
+    private long account;
 
-    public int getCash() {
+    public long getCash() {
         return cash;
     }
 
-    public void setCash(int cash) {
+    public void setCash(long cash) {
         this.cash = cash;
     }
 
-    public int getCards() {
+    public long getCards() {
         return cards;
     }
 
-    public void setCards(int cards) {
+    public void setCards(long cards) {
         this.cards = cards;
     }
 
-    public int getAccount() {
+    public long getAccount() {
         return account;
     }
 
-    public void setAccount(int account) {
+    public void setAccount(long account) {
         this.account = account;
     }
 
-    public void chargeCash(int x){
+    public void chargeCash(long x){
         cash += x;
     }
 
-    public void chargeCards(int x){
+    public void chargeCards(long x){
         cards += x;
     }
 
-    public void chargeAccount(int x){
+    public void chargeAccount(long x){
         account += x;
     }
 }

@@ -29,6 +29,10 @@ public class OrderDTO {
 
     private String regionName;
 
+    private Date deliverDate;
+
+    private Date orderedDate;
+
     public Long getOrderId() {
         return orderId;
     }
@@ -115,5 +119,21 @@ public class OrderDTO {
 
     public void setRegionName(String regionName) {
         this.regionName = regionName;
+    }
+
+    public Date getDeliverDate() {
+        return deliverDate;
+    }
+
+    public void setDeliverDate(Date deliverDate) {
+        this.deliverDate = deliverDate;
+    }
+
+    public Date getOrderedDate() {
+        return orderedDate;
+    }
+
+    public void setOrderedDate(Date orderedDate) {
+        this.orderedDate = orderedDate;
     }
 }

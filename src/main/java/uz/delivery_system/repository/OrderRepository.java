@@ -23,4 +23,8 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
     List<OrderEntity> findByFirmEntityIdAndOrderedDateAfter(Long id, Date date);
 
     List<OrderEntity> findByFirmEntityIdAndStatusAndDeliverDateAfterAndDeliverDateBefore(Long id, short status, Date lowerBound, Date upperBound);
+
+    List<OrderEntity> findByShopEntityIdAndStatusAndDeliverDateAfterAndDeliverDateBefore(Long id, short status, Date lowerBount, Date upperBound);
+
+    List<OrderEntity> findByShopEntityIdAndFirmEntityIdAndStatusAndDeliverDateAfterAndDeliverDateBefore(Long shopId, Long firmId, short status, Date lowerBound, Date upperBound);
 }
