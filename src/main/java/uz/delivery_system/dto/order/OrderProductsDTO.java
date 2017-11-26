@@ -17,7 +17,7 @@ public class OrderProductsDTO {
 
     private int productAmountInStore;
 
-    private int productCode;
+    private Integer productCode;
 
     private String unitOfMeasurement;
 
@@ -77,11 +77,11 @@ public class OrderProductsDTO {
         this.productAmountInStore = productAmountInStore;
     }
 
-    public int getProductCode() {
+    public Integer getProductCode() {
         return productCode;
     }
 
-    public void setProductCode(int productCode) {
+    public void setProductCode(Integer productCode) {
         this.productCode = productCode;
     }
 }

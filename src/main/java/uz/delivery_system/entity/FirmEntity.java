@@ -43,6 +43,9 @@ public class FirmEntity extends UpdatableBaseEntity{
     @Column(name = "dpxContractNumber")
     private Long dpxContractNumber = 0l;
 
+    @Column(name = "firmPriority", columnDefinition = "int default 0")
+    private Integer firmPriority = 0;
+
     @OneToOne
     private UserEntity maneger;
 
@@ -143,5 +146,13 @@ public class FirmEntity extends UpdatableBaseEntity{
 
     public void setDeliveriable(boolean deliveriable) {
         this.deliveriable = deliveriable;
+    }
+
+    public Integer getFirmPriority() {
+        return firmPriority;
+    }
+
+    public void setFirmPriority(Integer firmPriority) {
+        this.firmPriority = firmPriority;
     }
 }

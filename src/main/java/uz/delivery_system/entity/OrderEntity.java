@@ -1,5 +1,6 @@
 package uz.delivery_system.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import uz.delivery_system.entity.base.BaseEntity;
 import uz.delivery_system.utils.TableName;
 
@@ -25,11 +26,11 @@ public class OrderEntity extends BaseEntity{
     private Long registerNumber;
 
     @Column(name = "deliverDate")
-    @Temporal(value = TemporalType.DATE)
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Date deliverDate;
 
     @Column(name = "orderedDate")
-    @Temporal(value = TemporalType.DATE)
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Date orderedDate;
 
     @Column(name = "status", nullable = false)

@@ -1,5 +1,7 @@
 package uz.delivery_system.dto.report;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Calendar;
 
 /**
@@ -7,7 +9,10 @@ import java.util.Calendar;
  */
 public class PeriodOfTimeDTO {
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar lowerBound;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar upperBound;
 
     public Calendar getLowerBound() {

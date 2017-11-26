@@ -7,6 +7,7 @@ spring:
 
     datasource:
         driverClassName: org.postgresql.Driver
+#        url: jdbc:postgresql://83.69.129.245:5432/delivery-system
         url: jdbc:postgresql://localhost:5432/delivery-system
         username: deliver
         password: ds-2017$
@@ -25,6 +26,8 @@ spring:
     jackson:
         serialization:
         INDENT_OUTPUT: true
+        date-format: HH:mm dd/MM/yyyy
+        time-zone: Asia/Tashkent
 
     http:
         multipart:

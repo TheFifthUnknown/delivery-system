@@ -1,5 +1,9 @@
 package uz.delivery_system.dto.order;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -29,8 +33,10 @@ public class OrderDTO {
 
     private String regionName;
 
+//    @JsonFormat(pattern = "hh:mm dd/MM/yyyy")
     private Date deliverDate;
 
+//    @JsonFormat(pattern = "hh:mm dd/MM/yyyy")
     private Date orderedDate;
 
     public Long getOrderId() {

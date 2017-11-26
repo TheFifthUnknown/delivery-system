@@ -96,24 +96,27 @@ public class FirmServiceImpl implements FirmService {
 
     @Override
     public List<CategoryFirmsDTO> getFirmsByCategory(Long categoryId) {
-        List<FirmEntity> firmEntities = firmRepository.findAll();
+        List<FirmEntity> firmEntities = firmRepository.findAllByOrderByFirmPriorityDesc();
         List<CategoryFirmsDTO> list = new ArrayList<>();
         firmEntities.forEach(firmEntity -> {
-            int count = 0;
-            for (ProductEntity productEntity : firmEntity.getProducts()) {
-                if (productEntity.getCategory().getId().equals(categoryId)){
-                    count++;
+            if(!firmEntity.getBlocked()){
+                int count = 0;
+                for (ProductEntity productEntity : firmEntity.getProducts()) {
+                    if (productEntity.getCategory().getId().equals(categoryId)){
+                        count++;
+                    }
+                }
+                if(count > 0){
+                    CategoryFirmsDTO dto = new CategoryFirmsDTO();
+                    dto.setId(firmEntity.getId());
+                    dto.setFirmName(firmEntity.getFirmName());
+                    dto.setProductCount(count);
+                    dto.setImageUrl(firmEntity.getFirmLogoUrl());
+                    dto.setDeliveriable(firmEntity.isDeliveriable());
+                    list.add(dto);
                 }
             }
-            if(count > 0){
-                CategoryFirmsDTO dto = new CategoryFirmsDTO();
-                dto.setId(firmEntity.getId());
-                dto.setFirmName(firmEntity.getFirmName());
-                dto.setProductCount(count);
-                dto.setImageUrl(firmEntity.getFirmLogoUrl());
-                dto.setDeliveriable(firmEntity.isDeliveriable());
-                list.add(dto);
-            }
+
         });
         return list;
     }

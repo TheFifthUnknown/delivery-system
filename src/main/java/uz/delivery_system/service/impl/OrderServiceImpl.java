@@ -252,6 +252,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderProductsDTO fetchOrderProducts(OrderProductEntity orderProductEntity) {
         OrderProductsDTO dto = new OrderProductsDTO();
         dto.setProductId(orderProductEntity.getProduct().getId());
+        dto.setProductCode(orderProductEntity.getProduct().getProductCode());
         dto.setProductName(orderProductEntity.getProduct().getProductName());
         dto.setUnitOfMeasurement(orderProductEntity.getProduct().getUnitOfMeasurement());
         dto.setProductAmountInStore(orderProductEntity.getProduct().getAmountInStore());
