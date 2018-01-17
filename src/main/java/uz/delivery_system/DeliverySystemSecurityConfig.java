@@ -27,6 +27,9 @@ public class DeliverySystemSecurityConfig extends WebSecurityConfigurerAdapter {
             "/api/v1/shop/auth*", "/api/v1/refresh*","/api/v1/owner/auth*", "/api/v1/firm/auth*",
                 "/api/v1/deliver/auth*", "/api/v1/files*", "/api/v1/files/**"};
 
+    private static String[] swaggerUrls = {"/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
+            "/configuration/**", "/swagger-ui.html", "/webjars/**"};
+
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
 
@@ -64,6 +67,7 @@ public class DeliverySystemSecurityConfig extends WebSecurityConfigurerAdapter {
                         .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
                 .antMatchers(unfilteredUrls).permitAll()
+                .antMatchers(swaggerUrls).permitAll()
                 .anyRequest().authenticated();
 
         // Custom JWT based security filter

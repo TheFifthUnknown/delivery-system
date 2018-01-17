@@ -1,5 +1,7 @@
 package uz.delivery_system.dto.category;
 
+import io.swagger.annotations.ApiParam;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 

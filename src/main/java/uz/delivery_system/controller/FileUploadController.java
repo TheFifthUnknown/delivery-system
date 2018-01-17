@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uz.delivery_system.storage.StorageFileNotFoundException;
 import uz.delivery_system.storage.StorageService;
 
+@Api(description = "Fayl yuklash")
 @RestController
 @RequestMapping(value = "/files")
 public class FileUploadController {
@@ -24,6 +27,7 @@ public class FileUploadController {
     @Autowired
     private StorageService storageService;
 
+    @ApiOperation(value = "yuklangan fayllar ro'yhati")
     @RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<String> getList() throws IOException {
         return storageService.loadAll().map(
@@ -32,6 +36,7 @@ public class FileUploadController {
                 .collect(Collectors.toList());
     }
 
+    @ApiOperation(value = "Faylni nomi bo'yicha manzilini aniqlash")
     @RequestMapping(method = RequestMethod.GET, value = "/{filename:.+}")
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
         Resource file = storageService.loadAsResource(filename);
@@ -39,6 +44,7 @@ public class FileUploadController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
+    @ApiOperation(value = "Fayl yuklash")
     @PostMapping("/")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
             RedirectAttributes redirectAttributes) {

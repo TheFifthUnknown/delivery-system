@@ -1,5 +1,7 @@
 package uz.delivery_system.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +27,7 @@ import java.net.URI;
 /**
  * Created by Nodirbek on 08.07.2017.
  */
+@Api(description = "Do'konlar")
 @RestController
 @RequestMapping("/shops")
 public class ShopController {
@@ -32,8 +35,9 @@ public class ShopController {
     @Autowired
     private ShopService shopService;
 
+    @ApiOperation(value = "Do'kon qo'shish")
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity create(@RequestBody @Validated ShopRegistrationDTO registrationDTO) {
+    public ResponseEntity<Void> create(@RequestBody @Validated ShopRegistrationDTO registrationDTO) {
         this.validateRegistration(registrationDTO);
         ShopEntity shopEntity = shopService.createShopWithManager(registrationDTO);
         URI location = ServletUriComponentsBuilder
@@ -42,36 +46,42 @@ public class ShopController {
         return ResponseEntity.created(location).build();
     }
 
+    @ApiOperation(value = "Do'konni yangilash")
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity update(@RequestBody @Validated ShopUpdateDTO dto) {
+    public ResponseEntity<String> update(@RequestBody @Validated ShopUpdateDTO dto) {
         shopService.updateShop(dto);
         return ResponseEntity.ok("Ma\'lumotlar yangilandi!");
     }
 
+    @ApiOperation(value = "Do'konni ko'rish")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> details(@PathVariable Long id) {
+    public ResponseEntity<ShopDetailsDTO> details(@PathVariable Long id) {
         ShopDetailsDTO dto = shopService.getShopDetails(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Do'konlar ro'yhati", notes = "Do'konlar ro'yhatini pagination ko'rinishda ko'rish")
     @RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> listShopDetails(Pageable pageable) {
+    public ResponseEntity<Page<ShopDetailsDTO>> listShopDetails(Pageable pageable) {
         Page<ShopDetailsDTO> dto = shopService.listShopDetails(pageable);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Do'konni bloklash")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}/block", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> block(@PathVariable Long id) {
+    public ResponseEntity<String> block(@PathVariable Long id) {
         shopService.blockShop(id, Boolean.TRUE);
         return new ResponseEntity("Do'kon blocklab qo'yildi", HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Do'konni blokdan ochish")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}/unblock", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> unblock(@PathVariable Long id) {
+    public ResponseEntity<String> unblock(@PathVariable Long id) {
         shopService.blockShop(id, Boolean.FALSE);
         return new ResponseEntity("Do'kon blockdan ochildi", HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Do'konni o'chirish", notes = "Do'konni o'chirish, ishlarish tavfsiya qilinmaydi")
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> delete(@PathVariable Long id) {
         shopService.deleteShopWithManager(id);
