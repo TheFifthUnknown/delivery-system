@@ -11,15 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import uz.delivery_system.dto.firm.FirmDetailsDTO;
-import uz.delivery_system.dto.firm.FirmRegistrationDTO;
-import uz.delivery_system.dto.firm.FirmUpdateDTO;
 import uz.delivery_system.dto.shop.ShopDetailsDTO;
 import uz.delivery_system.dto.shop.ShopRegistrationDTO;
-import uz.delivery_system.dto.shop.ShopUpdateDTO;
-import uz.delivery_system.entity.FirmEntity;
 import uz.delivery_system.entity.ShopEntity;
 import uz.delivery_system.exceptions.ConfirmPasswordException;
+import uz.delivery_system.service.CategoryService;
 import uz.delivery_system.service.ShopService;
 
 import java.net.URI;
@@ -48,7 +44,7 @@ public class ShopController {
 
     @ApiOperation(value = "Do'konni yangilash")
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<String> update(@RequestBody @Validated ShopUpdateDTO dto) {
+    public ResponseEntity<String> update(@RequestBody @Validated CategoryService.ShopUpdateDTO dto) {
         shopService.updateShop(dto);
         return ResponseEntity.ok("Ma\'lumotlar yangilandi!");
     }

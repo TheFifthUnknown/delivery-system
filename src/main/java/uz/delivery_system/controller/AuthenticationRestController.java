@@ -16,6 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,11 +58,14 @@ public class AuthenticationRestController {
     private EhCacheBean ehCacheBean;
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @ApiOperation(value = "admin",notes = "administrator mobil dasturi uchun avtorizatsiya bo'limi. Headerdagi Authorization uchun ixtiyotiy matn yozish mumkin.")
     @RequestMapping(value = "${route.authentication.owner}", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<JwtAuthenticationResponse> createAuthenticationMobileDriverToken(@RequestBody JwtAuthenticationRequest authenticationRequest,Device device,HttpServletResponse response) throws AuthenticationException, IOException {
         // Perform the security
+        System.out.println(passwordEncoder.encode(authenticationRequest.getPassword()));
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         authenticationRequest.getUsername(),
@@ -77,6 +81,7 @@ public class AuthenticationRestController {
         final String token = jwtTokenUtil.generateToken(jwtUser, device);
         ehCacheBean.putUserDetails(jwtUser);
         // Return the token
+        System.out.println(token);
         return ResponseEntity.ok(new JwtAuthenticationResponse(token, jwtUser.getFullName(),UserRole.ADMIN));
     }
 
@@ -84,6 +89,7 @@ public class AuthenticationRestController {
     @RequestMapping(value = "${route.authentication.firm}", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<JwtAuthenticationResponse> createAuthenticationFirmAdmin(@RequestBody JwtAuthenticationRequest authenticationRequest,Device device,HttpServletResponse response) throws AuthenticationException, IOException {
         // Perform the security
+
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         authenticationRequest.getUsername(),
@@ -107,6 +113,7 @@ public class AuthenticationRestController {
     @RequestMapping(value = "${route.authentication.shop}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<JwtAuthenticationResponse> createAuthenticationWebToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device, HttpServletResponse response) throws AuthenticationException, IOException {
         // Perform the security
+        System.out.println(authenticationRequest.getPassword());
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         authenticationRequest.getUsername(),

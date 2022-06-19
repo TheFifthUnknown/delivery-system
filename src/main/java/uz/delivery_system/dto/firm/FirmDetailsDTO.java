@@ -1,6 +1,5 @@
 package uz.delivery_system.dto.firm;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.hateoas.ResourceSupport;
 
 import javax.validation.constraints.NotNull;

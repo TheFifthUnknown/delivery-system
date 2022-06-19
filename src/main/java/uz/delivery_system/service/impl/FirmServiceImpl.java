@@ -186,5 +186,5 @@ public class FirmServiceImpl implements FirmService {
         return dto;
     }
 
-    private final String IMAGE_URL = "http://dpx.uz:8080/api/v1/files/";
+    private final String IMAGE_URL = "http://localhost:8080/api/v1/files/";
 }

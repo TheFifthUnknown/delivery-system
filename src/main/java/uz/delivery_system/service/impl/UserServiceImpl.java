@@ -43,6 +43,7 @@ public class UserServiceImpl implements UserService {
         if (dto.getConfirm().equals(dto.getPassword())){
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             userEntity.setPassword(encoder.encode(dto.getPassword()));
+            System.out.println(encoder.encode(dto.getPassword()));
         }
         userRepository.save(userEntity);
     }

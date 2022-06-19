@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import uz.delivery_system.dto.shop.ShopDetailsDTO;
 import uz.delivery_system.dto.shop.ShopRegistrationDTO;
-import uz.delivery_system.dto.shop.ShopUpdateDTO;
 import uz.delivery_system.entity.RegionEntity;
 import uz.delivery_system.entity.ShopEntity;
 import uz.delivery_system.entity.UserEntity;
@@ -20,6 +19,7 @@ import uz.delivery_system.exceptions.AlreadyExistException;
 import uz.delivery_system.repository.RegionRepository;
 import uz.delivery_system.repository.ShopRepository;
 import uz.delivery_system.repository.UserRepository;
+import uz.delivery_system.service.CategoryService;
 import uz.delivery_system.service.ShopService;
 import uz.delivery_system.utils.SecurityUtils;
 
@@ -72,7 +72,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public void updateShop(ShopUpdateDTO dto) {
+    public void updateShop(CategoryService.ShopUpdateDTO dto) {
         ShopEntity shopEntity = shopRepository.findOne(dto.getShopId());
         if (shopEntity == null) {
             throw new NotFoundException(3, "Bunday do'kon topilmadi");
@@ -129,16 +129,16 @@ public class ShopServiceImpl implements ShopService {
         userRepository.delete(shopEntity.getManeger());
     }
 
-    private ShopEntity fetchShopData(ShopRegistrationDTO registrationDTO) {
+    public ShopEntity fetchShopData(ShopRegistrationDTO registrationDTO) {
         ShopEntity shopEntity = new ShopEntity();
         BeanUtils.copyProperties(registrationDTO, shopEntity);
         Date current = new Date();
         shopEntity.setCreateDate(current);
-        shopEntity.setCreateUserId(SecurityUtils.getUserId());
+        shopEntity.setCreateUserId(42L);
         return shopEntity;
     }
 
-    private UserEntity fetchUserData(ShopRegistrationDTO registrationDTO) {
+    public UserEntity fetchUserData(ShopRegistrationDTO registrationDTO) {
         UserEntity userEntity = new UserEntity();
         BeanUtils.copyProperties(registrationDTO, userEntity, "password");
         userEntity.setPassword(passwordEncoder.encode(registrationDTO.getPassword()));
@@ -149,7 +149,7 @@ public class ShopServiceImpl implements ShopService {
         return userEntity;
     }
 
-    private ShopDetailsDTO getShopDetailsAsDTO(ShopEntity shopEntity) {
+    public ShopDetailsDTO getShopDetailsAsDTO(ShopEntity shopEntity) {
         ShopDetailsDTO dto = new ShopDetailsDTO();
         BeanUtils.copyProperties(shopEntity, dto);
         dto.setActive(!shopEntity.getBlocked());
