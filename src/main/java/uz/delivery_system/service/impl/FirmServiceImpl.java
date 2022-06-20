@@ -186,5 +186,5 @@ public class FirmServiceImpl implements FirmService {
         return dto;
     }
 
-    private final String IMAGE_URL = "http://34.79.110.94:8080/api/v1/files/";
+    private final String IMAGE_URL = "http://34.79.110.94:8083/api/v1/files/";
 }
