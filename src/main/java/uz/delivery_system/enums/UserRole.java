@@ -1,8 +1,5 @@
 package uz.delivery_system.enums;
 
-/**
- * @author Dilshod Tadjiev.
- */
 public enum UserRole {
     ADMIN,
     SHOP_MANAGER,

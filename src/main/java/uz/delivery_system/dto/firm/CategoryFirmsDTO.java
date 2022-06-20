@@ -1,8 +1,4 @@
 package uz.delivery_system.dto.firm;
-
-/**
- * Created by Nodirbek on 29.08.2017.
- */
 public class CategoryFirmsDTO {
 
     private long id;

@@ -5,9 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-/**
- * Created by Nodirbek on 02.09.2017.
- */
+
 public class CreateOrderDTO {
 
     @NotNull

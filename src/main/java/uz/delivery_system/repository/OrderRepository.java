@@ -7,9 +7,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Nodirbek on 31.08.2017.
- */
 public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 
     List<OrderEntity> findByShopEntityIdOrderByIdDesc(Long id);

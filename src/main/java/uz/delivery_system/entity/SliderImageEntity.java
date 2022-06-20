@@ -5,10 +5,6 @@ import uz.delivery_system.utils.TableName;
 
 import javax.persistence.*;
 import java.util.Date;
-
-/**
- * Created by Nodirbek on 08.09.2017.
- */
 @Entity
 @Table(name = TableName.SLIDERS)
 public class SliderImageEntity extends BaseEntity{

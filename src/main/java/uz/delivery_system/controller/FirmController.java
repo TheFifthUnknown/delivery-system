@@ -23,10 +23,7 @@ import uz.delivery_system.service.FirmService;
 import java.net.URI;
 import java.util.List;
 
-/**
- * Created by Nodirbek on 08.07.2017.
- */
-@Api(description = "Firmalar")
+@Api(description = "Firms")
 @RestController
 @RequestMapping("/firms")
 public class FirmController {
@@ -34,7 +31,7 @@ public class FirmController {
     @Autowired
     private FirmService firmService;
 
-    @ApiOperation(value = "yaratish", notes = "Yangi firma yaratish ")
+    @ApiOperation(value = "create", notes = "Создание новой фирмы")
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Void> create(@RequestBody @Validated FirmRegistrationDTO registrationDTO) {
         this.validateRegistration(registrationDTO);
@@ -45,68 +42,68 @@ public class FirmController {
         return ResponseEntity.created(location).build();
     }
 
-    @ApiOperation(value = "yangilash", notes = "Mavjud firmani yangilash")
+    @ApiOperation(value = "update", notes = "Обновление существующей фирмы")
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> update(@RequestBody @Validated FirmUpdateDTO dto) {
         firmService.updateFirm(dto);
-        return ResponseEntity.ok("Ma\'lumotlar yangilandi!");
+        return ResponseEntity.ok("Information updated!");
     }
 
-    @ApiOperation(value = "firmani ko'rish", notes = "Berilgan {id} li firmani ma'lumotlarini ko'rish")
+    @ApiOperation(value = "delete", notes = "Просмотр информации о фирме, предоставленной {id}")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<FirmDetailsDTO> details(@PathVariable Long id) {
         FirmDetailsDTO dto = firmService.getFirmDetails(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "firmalar", notes = "Firmalar ro'yhatini pagination ko'rinishi, url manzilga page va sort berish mumkin")
+    @ApiOperation(value = "firms", notes = "Список фирм может быть представлен в виде страницы, страницы и сортировки по url")
     @RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Page<FirmDetailsDTO>> listFirmDetails(Pageable pageable) {
         Page<FirmDetailsDTO> dto = firmService.listFirmDetails(pageable);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "kategoriyaga bo'yicha firmalar", notes = "Kategoriyaga tegishli firmalar ro'yhatini ko'rish. " +
-            "Url manzilga caategoriyani {id} si yuboriladi")
+    @ApiOperation(value = "firms by Category", notes = "Просмотр списка фирм, относящихся к категории. " +
+            "Url отправляет категорию {id}")
     @RequestMapping(method = RequestMethod.GET, value = "/category/{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<CategoryFirmsDTO>> getFirmsByCategory(@PathVariable Long id) {
         List<CategoryFirmsDTO> dto = firmService.getFirmsByCategory(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "firmani bloklash", notes = "Berilgan firmani bloklab qo'yish. firma bloklangandan so'ng login qilib kira olmaydi")
+    @ApiOperation(value = "blocking the firm", notes = "Блокировка данной фирмы. как не войти в систему после блокировки фирмы")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}/block", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> block(@PathVariable Long id) {
         firmService.blockFirm(id, Boolean.TRUE);
-        return new ResponseEntity("Firma blocklab qo'yildi", HttpStatus.OK);
+        return new ResponseEntity("The firm is blocked", HttpStatus.OK);
     }
 
-    @ApiOperation(value = "firmani blokdan ochish")
+    @ApiOperation(value = "opening the firm from the block")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}/unblock", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> unblock(@PathVariable Long id) {
         firmService.blockFirm(id, Boolean.FALSE);
-        return new ResponseEntity("Firma blockdan ochildi", HttpStatus.OK);
+        return new ResponseEntity("The firm opened from block", HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Berilgan firmani o'chirish", notes = "Firmani o'chirish. Agarda firmaga yangi yaratilgan bo'lsa o'chirish mumkin. " +
-            "Firmaga maxsulot qo'shilgan bo'lsa, yoki boshqa amallar bajarilgan bo'lsa o'chirish mumkin emas. Buni o'rniga bloklash" +
-            "funksiyasini ishlatish tavfsiya etiladi")
+    @ApiOperation(value = "Delete a given firm", notes = "Удалить фирму. Если фирма вновь создана, ее можно удалить. " +
+            "Фирма не может быть удалена, если продукт был добавлен, или если были выполнены другие действия. Заблокируйте это вместо" +
+            "использование функции обходится")
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String > delete(@PathVariable Long id) {
         firmService.deleteFirmWithManager(id);
-        return new ResponseEntity("Firma bazadan o\'chirildi", HttpStatus.OK);
+        return new ResponseEntity("The firm was removed from the base", HttpStatus.OK);
     }
 
-    @ApiOperation(value = "firma logotipi", notes = "firmaga yangi logotip belgilash")
+    @ApiOperation(value = "company logo", notes = "присвоение фирме нового логотипа")
     @RequestMapping(method = RequestMethod.POST, value = "/logo")
     public ResponseEntity<?> changeLogo(MultipartFile file){
         firmService.changeFirmLogo(file);
-        return ResponseEntity.ok("Firmani logotipi yangilandi");
+        return ResponseEntity.ok("Updated the logo of the firm");
     }
 
     private void validateRegistration(FirmRegistrationDTO registrationDTO) {
         if(!registrationDTO.getPassword().equals(registrationDTO.getConfirmPassword())){
-            throw new ConfirmPasswordException(1, "Takroriy parolni to'g'ri kiriting!");
+            throw new ConfirmPasswordException(1, "Enter the repeated password correctly!");
         }
     }
 }

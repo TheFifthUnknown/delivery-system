@@ -19,12 +19,7 @@ import uz.delivery_system.service.CategoryService;
 import java.net.URI;
 import java.util.List;
 
-/**
- * Created by Nodirbek on 13.07.2017.
- * Categoriyalarni boshqarish.
- * tizimga kiritilgan firmalar ushbu kategoriyalar bo'yicha qo'shiladi.
- */
-@Api(description = "Kategoriyalar")
+@Api(description = "Categories")
 @RestController
 @RequestMapping(value = "/categories")
 public class CategoryController {
@@ -32,28 +27,28 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @ApiOperation(value = "yaratish", notes = "Kategoriya yaratish.")
+    @ApiOperation(value = "create", notes = "Создание категории.")
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> create(@RequestBody @Validated CategoryDTO categoryDTO) {
         categoryService.create(categoryDTO);
-        return ResponseEntity.ok("Kategoriya qo'shildi");
+        return ResponseEntity.ok("Добавлена категория");
     }
 
-    @ApiOperation(value = "yangilash", notes = "Mavjud kategoriyani yangilash.")
+    @ApiOperation(value = "update", notes = "Обновите существующую категорию.")
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> update(@RequestBody @Validated CategoryDTO categoryDTO) {
         categoryService.update(categoryDTO);
-        return ResponseEntity.ok("Kategoriya yangilandi");
+        return ResponseEntity.ok("Категория обновлена");
     }
 
-    @ApiOperation(value = "o'chirish", notes = "Mavjud kategoriyani o'chirish.")
+    @ApiOperation(value = "delete", notes = "Удалить существующую категорию.")
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> delete(@PathVariable Long id) {
         categoryService.delete(id);
-        return ResponseEntity.ok("Kategoriya o'chirildi");
+        return ResponseEntity.ok("Категория удалена");
     }
 
-    @ApiOperation(value = "kategoriyalar ro'yhati", notes = "Mavjud kategoriyani ko'rish.")
+    @ApiOperation(value = "list of categories", notes = "Просмотр существующей категории.")
     @RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<CategoryDTO>> listCategory() {
         List<CategoryDTO> dto = categoryService.listCategories();

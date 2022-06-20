@@ -1,8 +1,5 @@
 package uz.delivery_system.dto.report;
 
-/**
- * Created by Nodirbek on 26.10.2017.
- */
 public class FirmsReportDTO {
 
     private Long firmId;

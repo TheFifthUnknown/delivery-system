@@ -3,9 +3,6 @@ package uz.delivery_system.dto.product;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-/**
- * Created by Nodirbek on 20.10.2017.
- */
 public class ProductAmountDTO {
 
     @NotNull

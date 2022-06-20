@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uz.delivery_system.storage.StorageFileNotFoundException;
 import uz.delivery_system.storage.StorageService;
 
-@Api(description = "Fayl yuklash")
+@Api(description = "File upload")
 @RestController
 @RequestMapping(value = "/files")
 public class FileUploadController {
@@ -27,7 +27,7 @@ public class FileUploadController {
     @Autowired
     private StorageService storageService;
 
-    @ApiOperation(value = "yuklangan fayllar ro'yhati")
+    @ApiOperation(value = "list of downloaded files")
     @RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<String> getList() throws IOException {
         return storageService.loadAll().map(
@@ -36,7 +36,7 @@ public class FileUploadController {
                 .collect(Collectors.toList());
     }
 
-    @ApiOperation(value = "Faylni nomi bo'yicha manzilini aniqlash")
+    @ApiOperation(value = "Determine the address by file name")
     @RequestMapping(method = RequestMethod.GET, value = "/{filename:.+}")
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
         Resource file = storageService.loadAsResource(filename);
@@ -44,7 +44,7 @@ public class FileUploadController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
-    @ApiOperation(value = "Fayl yuklash")
+    @ApiOperation(value = "File upload")
     @PostMapping("/")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
             RedirectAttributes redirectAttributes) {

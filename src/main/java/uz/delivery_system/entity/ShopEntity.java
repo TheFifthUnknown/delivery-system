@@ -4,10 +4,6 @@ import uz.delivery_system.entity.base.UpdatableBaseEntity;
 import uz.delivery_system.utils.TableName;
 
 import javax.persistence.*;
-
-/**
- * Created by Nodirbek on 11.07.2017.
- */
 @Entity
 @Table(name = TableName.SHOPS)
 public class ShopEntity extends UpdatableBaseEntity {

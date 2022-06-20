@@ -20,10 +20,7 @@ import uz.delivery_system.service.ShopService;
 
 import java.net.URI;
 
-/**
- * Created by Nodirbek on 08.07.2017.
- */
-@Api(description = "Do'konlar")
+@Api(description = "Shops")
 @RestController
 @RequestMapping("/shops")
 public class ShopController {
@@ -31,7 +28,7 @@ public class ShopController {
     @Autowired
     private ShopService shopService;
 
-    @ApiOperation(value = "Do'kon qo'shish")
+    @ApiOperation(value = "Add shop")
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Void> create(@RequestBody @Validated ShopRegistrationDTO registrationDTO) {
         this.validateRegistration(registrationDTO);
@@ -42,51 +39,51 @@ public class ShopController {
         return ResponseEntity.created(location).build();
     }
 
-    @ApiOperation(value = "Do'konni yangilash")
+    @ApiOperation(value = "Store update")
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> update(@RequestBody @Validated CategoryService.ShopUpdateDTO dto) {
         shopService.updateShop(dto);
-        return ResponseEntity.ok("Ma\'lumotlar yangilandi!");
+        return ResponseEntity.ok("Data updated!");
     }
 
-    @ApiOperation(value = "Do'konni ko'rish")
+    @ApiOperation(value = "See the store")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<ShopDetailsDTO> details(@PathVariable Long id) {
         ShopDetailsDTO dto = shopService.getShopDetails(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Do'konlar ro'yhati", notes = "Do'konlar ro'yhatini pagination ko'rinishda ko'rish")
+    @ApiOperation(value = "List of stores", notes = "Просмотр списка магазинов в виде разбиения на страницы")
     @RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Page<ShopDetailsDTO>> listShopDetails(Pageable pageable) {
         Page<ShopDetailsDTO> dto = shopService.listShopDetails(pageable);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Do'konni bloklash")
+    @ApiOperation(value = "Block Shop")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}/block", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> block(@PathVariable Long id) {
         shopService.blockShop(id, Boolean.TRUE);
-        return new ResponseEntity("Do'kon blocklab qo'yildi", HttpStatus.OK);
+        return new ResponseEntity("The store is locked", HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Do'konni blokdan ochish")
+    @ApiOperation(value = "Opening the store from the block")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}/unblock", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> unblock(@PathVariable Long id) {
         shopService.blockShop(id, Boolean.FALSE);
-        return new ResponseEntity("Do'kon blockdan ochildi", HttpStatus.OK);
+        return new ResponseEntity("The store opened from block", HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Do'konni o'chirish", notes = "Do'konni o'chirish, ishlarish tavfsiya qilinmaydi")
+    @ApiOperation(value = "Store shutdown", notes = "Отключение магазина, работа не разрешена")
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> delete(@PathVariable Long id) {
         shopService.deleteShopWithManager(id);
-        return new ResponseEntity("Do'kon bazadan o\'chirildi", HttpStatus.OK);
+        return new ResponseEntity("The store was removed from the base", HttpStatus.OK);
     }
 
     private void validateRegistration(ShopRegistrationDTO registrationDTO) {
         if(!registrationDTO.getPassword().equals(registrationDTO.getConfirmPassword())){
-            throw new ConfirmPasswordException(1, "Takroriy parolni to'g'ri kiriting!");
+            throw new ConfirmPasswordException(1, "Enter the repeated password correctly!");
         }
     }
 }

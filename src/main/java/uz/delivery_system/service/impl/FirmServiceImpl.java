@@ -30,9 +30,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Created by Nodirbek on 08.07.2017.
- */
 @Service
 public class FirmServiceImpl implements FirmService {
 
@@ -53,7 +50,7 @@ public class FirmServiceImpl implements FirmService {
     public FirmEntity createFirmWithManager(FirmRegistrationDTO registrationDTO) {
         Optional<UserEntity> user = userRepository.findByUsername(registrationDTO.getUsername());
         if(user.isPresent()){
-            throw new AlreadyExistException(2,"Bu login avvaldan mavjud");
+            throw new AlreadyExistException(2,"This login is available from the beginning");
         }
         UserEntity userEntity = fetchUserData(registrationDTO);
         FirmEntity firmEntity = fetchFirmData(registrationDTO);
@@ -68,7 +65,7 @@ public class FirmServiceImpl implements FirmService {
     public void updateFirm(FirmUpdateDTO dto) {
         FirmEntity firmEntity = firmRepository.findOne(dto.getFirmId());
         if (firmEntity == null) {
-            throw new NotFoundException(3, "Bunday firma topilmadi");
+            throw new NotFoundException(3, "Such a firm could not be found");
         }
         BeanUtils.copyProperties(dto, firmEntity);
         BeanUtils.copyProperties(dto, firmEntity.getManeger());
@@ -79,7 +76,7 @@ public class FirmServiceImpl implements FirmService {
     public FirmDetailsDTO getFirmDetails(Long id) {
         FirmEntity firmEntity = firmRepository.findOne(id);
         if (firmEntity == null) {
-            throw new NotFoundException(3, "Bunday firma topilmadi");
+            throw new NotFoundException(3, "Such a firm could not be found");
         }
         return getFirmDetailsAsDTO(firmEntity);
     }
@@ -126,7 +123,7 @@ public class FirmServiceImpl implements FirmService {
     public void deleteFirmWithManager(Long id) {
         FirmEntity firmEntity = firmRepository.findOne(id);
         if(firmEntity == null){
-            throw new NotFoundException(2,"Bunday firma topilmadi");
+            throw new NotFoundException(2,"Such a firm could not be found");
         }
         userRepository.delete(firmEntity.getManeger());
 //        firmRepository.delete(firmEntity);
@@ -136,7 +133,7 @@ public class FirmServiceImpl implements FirmService {
     public void blockFirm(Long id, Boolean blocked) {
         FirmEntity firmEntity = firmRepository.findOne(id);
         if(firmEntity == null){
-            throw new NotFoundException(2,"Bunday firma topilmadi");
+            throw new NotFoundException(2,"Such a firm could not be found");
         }
         firmEntity.setBlocked(blocked);
         firmRepository.save(firmEntity);
@@ -147,7 +144,7 @@ public class FirmServiceImpl implements FirmService {
         UserEntity userEntity = userRepository.findOne(SecurityUtils.getUserId());
         FirmEntity firmEntity = userEntity.getFirm();
         if (firmEntity == null) {
-            throw new NotFoundException(1,"Firma logini bilan kiring");
+            throw new NotFoundException(1,"Log in with the company log");
         }
         String filename = storageService.store(file);
         firmEntity.setFirmLogoUrl(IMAGE_URL+filename);

@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Calendar;
 
-/**
- * Created by Nodirbek on 25.10.2017.
- */
 public class PeriodOfTimeDTO {
 
     @JsonFormat(pattern = "yyyy-MM-dd")

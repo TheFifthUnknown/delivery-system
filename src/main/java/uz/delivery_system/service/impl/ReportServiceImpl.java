@@ -14,9 +14,6 @@ import uz.delivery_system.utils.SecurityUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Created by Nodirbek on 04.10.2017.
- */
 @Service
 public class ReportServiceImpl implements ReportService {
 
@@ -30,7 +27,7 @@ public class ReportServiceImpl implements ReportService {
     public ShortReportDTO getDailyReport() {
         UserEntity userEntity = userRepository.findOne(SecurityUtils.getUserId());
         if (userEntity.getFirm() == null) {
-            throw new NotFoundException(1,"Firma logini bilan kiring");
+            throw new NotFoundException(1,"Log in with the company log");
         }
         Date today = yesterday();
         List<OrderEntity> list = orderRepository.findByFirmEntityIdAndOrderedDateAfter(userEntity.getFirm().getId(), today);
@@ -42,7 +39,7 @@ public class ReportServiceImpl implements ReportService {
     public ShortReportDTO getMonthlyReport() {
         UserEntity userEntity = userRepository.findOne(SecurityUtils.getUserId());
         if (userEntity.getFirm() == null) {
-            throw new NotFoundException(1,"Firma logini bilan kiring");
+            throw new NotFoundException(1,"Log in with the company log");
         }
         Date month = thisMonth();
         List<OrderEntity> list = orderRepository.findByFirmEntityIdAndOrderedDateAfter(userEntity.getFirm().getId(), month);
@@ -54,7 +51,7 @@ public class ReportServiceImpl implements ReportService {
     public List<ProductsReportDTO> getReportByProducts(PeriodOfTimeDTO dto) {
         UserEntity userEntity = userRepository.findOne(SecurityUtils.getUserId());
         if (userEntity.getFirm() == null) {
-            throw new NotFoundException(1,"Firma logini bilan kiring");
+            throw new NotFoundException(1,"Log in with the company log");
         }
         dto.getLowerBound().add(Calendar.DATE, -1);
         dto.getUpperBound().add(Calendar.DATE, +1);
@@ -101,7 +98,7 @@ public class ReportServiceImpl implements ReportService {
     public List<ShopsReportDTO> getReportByShops(PeriodOfTimeDTO dto) {
         UserEntity userEntity = userRepository.findOne(SecurityUtils.getUserId());
         if (userEntity.getFirm() == null) {
-            throw new NotFoundException(1,"Firma logini bilan kiring");
+            throw new NotFoundException(1,"Log in with the company log");
         }
         dto.getLowerBound().add(Calendar.DATE, -1);
         dto.getUpperBound().add(Calendar.DATE, +1);
@@ -142,7 +139,7 @@ public class ReportServiceImpl implements ReportService {
     public List<FirmsReportDTO> getReportByFirms(PeriodOfTimeDTO dto) {
         UserEntity userEntity = userRepository.findOne(SecurityUtils.getUserId());
         if (userEntity.getShop() == null) {
-            throw new NotFoundException(1,"Do'kon logini bilan kiring");
+            throw new NotFoundException(1,"Log in with the store log");
         }
         dto.getLowerBound().add(Calendar.DATE, -1);
         dto.getUpperBound().add(Calendar.DATE, +1);
@@ -183,7 +180,7 @@ public class ReportServiceImpl implements ReportService {
     public List<ProductsReportDTO> getReportByFirmProducts(Long firmId, PeriodOfTimeDTO dto) {
         UserEntity userEntity = userRepository.findOne(SecurityUtils.getUserId());
         if (userEntity.getShop() == null) {
-            throw new NotFoundException(1,"Do'kon logini bilan kiring");
+            throw new NotFoundException(1,"Log in with the store log");
         }
         dto.getLowerBound().add(Calendar.DATE, -1);
         dto.getUpperBound().add(Calendar.DATE, +1);

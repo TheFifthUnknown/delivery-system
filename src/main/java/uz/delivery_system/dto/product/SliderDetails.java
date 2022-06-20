@@ -1,8 +1,4 @@
 package uz.delivery_system.dto.product;
-
-/**
- * Created by Nodirbek on 08.09.2017.
- */
 public class SliderDetails {
 
     private Long imageId;

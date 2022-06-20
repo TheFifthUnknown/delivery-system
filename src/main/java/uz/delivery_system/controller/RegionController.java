@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import uz.delivery_system.dto.region.RegionDTO;
 import uz.delivery_system.service.RegionService;
 
-/**
- * Created by Nodirbek on 13.07.2017.
- */
-@Api(description = "Regionlar")
+@Api(description = "Regions")
 @RestController
 @RequestMapping(value = "/regions")
 public class RegionController {
@@ -24,28 +21,28 @@ public class RegionController {
     @Autowired
     private RegionService regionService;
 
-    @ApiOperation(value = "Region qo'shish", notes = "Region yaratish. Firma va do'konlar shu regionlarga biriktiriladi")
+    @ApiOperation(value = "Add Region", notes = "Создание региона. Фирмы и магазины будут прикреплены к этим регионам")
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> create(@RequestBody @Validated RegionDTO regionDTO) {
         regionService.create(regionDTO);
-        return ResponseEntity.ok("Region qo'shildi");
+        return ResponseEntity.ok("Region added");
     }
 
-    @ApiOperation(value = "regionni yangilash", notes = "Berilgan region ma'lumotlarini yangilash")
+    @ApiOperation(value = "Кegion update", notes = "Обновление данных о данном регионе")
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> update(@RequestBody @Validated RegionDTO regionDTO) {
         regionService.update(regionDTO);
-        return ResponseEntity.ok("Region yangilandi");
+        return ResponseEntity.ok("Region updated");
     }
 
-    @ApiOperation(value = "Regionni o'chirish", notes = "Regionni o'chirish. O'chirish amallarini iloji boricha ishlatmaslik tavfsiya qilinadi")
+    @ApiOperation(value = "Delete region", notes = "Удаление региона. Не использовать действия удаления, насколько это возможно, будет оправдано")
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> delete(@PathVariable Long id) {
         regionService.delete(id);
-        return ResponseEntity.ok("Region o'chirildi");
+        return ResponseEntity.ok("Region removed");
     }
 
-    @ApiOperation(value = "Regionlar ro'yhati", notes = "Regionlar ro'yhatini pagination ko'rinishda chiqarish")
+    @ApiOperation(value = "List of Regions", notes = "Вывод списка регионов в виде разбиения на страницы")
     @RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Page<RegionDTO>> listCategory(Pageable pageable) {
         Page<RegionDTO> dto = regionService.listCategories(pageable);

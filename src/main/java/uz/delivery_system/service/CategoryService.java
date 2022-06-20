@@ -6,9 +6,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
-/**
- * Created by Nodirbek on 13.07.2017.
- */
 public interface CategoryService {
 
     void create(CategoryDTO categoryDTO);
@@ -19,9 +16,6 @@ public interface CategoryService {
 
     List<CategoryDTO> listCategories();
 
-    /**
-     * Created by Nodirbek on 08.07.2017.
-     */
     class ShopUpdateDTO {
 
         @NotNull

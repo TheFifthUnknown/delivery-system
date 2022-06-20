@@ -5,9 +5,6 @@ import uz.delivery_system.utils.TableName;
 
 import javax.persistence.*;
 
-/**
- * Created by Nodirbek on 02.09.2017.
- */
 @Entity
 @Table(name = TableName.ORDER_PRODUCTS)
 public class OrderProductEntity extends BaseEntity {

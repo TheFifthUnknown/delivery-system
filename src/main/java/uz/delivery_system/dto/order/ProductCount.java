@@ -2,9 +2,7 @@ package uz.delivery_system.dto.order;
 
 import javax.validation.constraints.NotNull;
 
-/**
- * Created by Nodirbek on 02.09.2017.
- */
+
 public class ProductCount {
 
     @NotNull

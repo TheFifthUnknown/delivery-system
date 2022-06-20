@@ -10,9 +10,7 @@ import uz.delivery_system.enums.UserRole;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author Sadullayev N.
- */
+
 public interface UserRepository extends JpaRepository<UserEntity,Long>, JpaSpecificationExecutor<UserEntity> {
 
     Optional<UserEntity> findByUsernameAndActive(String username,Boolean active);

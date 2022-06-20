@@ -12,9 +12,6 @@ import uz.delivery_system.utils.SecurityUtils;
 
 import java.util.Optional;
 
-/**
- * Created by Nodirbek on 12.07.2017.
- */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -25,7 +22,7 @@ public class UserServiceImpl implements UserService {
     public void blockUser(Long id, Boolean block) {
         UserEntity userEntity = userRepository.findOne(id);
         if (userEntity == null) {
-            throw new NotFoundException(1, "Bunday foydalanuvchi mavjud emas!");
+            throw new NotFoundException(1, "Such a user does not exist!");
         }
         userEntity.setActive(!block);
         userRepository.save(userEntity);

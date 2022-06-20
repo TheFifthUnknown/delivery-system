@@ -1,8 +1,5 @@
 package uz.delivery_system.dto.report;
 
-/**
- * Created by Nodirbek on 04.10.2017.
- */
 public class ShortReportDTO {
 
     private PaymentType delivered;

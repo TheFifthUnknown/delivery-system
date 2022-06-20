@@ -2,9 +2,6 @@ package uz.delivery_system.exceptions;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-/**
- * Created by Nodirbek on 08.07.2017.
- */
 @ResponseStatus()
 public class NotFoundException extends RuntimeException {
 

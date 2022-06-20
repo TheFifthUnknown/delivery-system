@@ -16,9 +16,6 @@ import uz.delivery_system.service.RegionService;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Nodirbek on 13.07.2017.
- */
 @Service
 public class RegionServiceImpl implements RegionService {
 
@@ -35,11 +32,11 @@ public class RegionServiceImpl implements RegionService {
     @Override
     public void update(RegionDTO regionDTO) {
         if(regionDTO.getId() == null){
-            throw new NullPointerException(1, "Id ko'rsatilmagan");
+            throw new NullPointerException(1, "Id not specified");
         }
         RegionEntity categoryEntity = regionRepository.findOne(regionDTO.getId());
         if (categoryEntity == null) {
-            throw new NotFoundException(1,"Bunday kategoriya mavjud emas");
+            throw new NotFoundException(1,"There is no such category");
         }
         BeanUtils.copyProperties(regionDTO, categoryEntity);
         regionRepository.save(categoryEntity);
@@ -49,7 +46,7 @@ public class RegionServiceImpl implements RegionService {
     public void delete(Long id) {
         RegionEntity categoryEntity = regionRepository.findOne(id);
         if (categoryEntity == null) {
-            throw new NotFoundException(1,"Bunday kategoriya mavjud emas");
+            throw new NotFoundException(1,"There is no such category");
         }
         regionRepository.delete(categoryEntity);
     }

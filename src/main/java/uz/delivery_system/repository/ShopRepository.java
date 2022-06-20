@@ -5,9 +5,6 @@ import uz.delivery_system.entity.ShopEntity;
 
 import java.util.Optional;
 
-/**
- * Created by Nodirbek on 12.07.2017.
- */
 public interface ShopRepository extends JpaRepository<ShopEntity, Long> {
 
     Optional<ShopEntity> findByShopINN(String shopINN);

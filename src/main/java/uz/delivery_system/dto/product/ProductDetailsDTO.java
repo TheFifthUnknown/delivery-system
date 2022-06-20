@@ -2,9 +2,6 @@ package uz.delivery_system.dto.product;
 
 import java.util.List;
 
-/**
- * Created by Nodirbek on 16.07.2017.
- */
 public class ProductDetailsDTO {
 
     private Long id;

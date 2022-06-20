@@ -7,9 +7,6 @@ import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-/**
- * @author Dilshod Tadjiev.
- */
 @Component
 public class EhCacheBean {
 

@@ -1,8 +1,6 @@
 package uz.delivery_system.dto.order;
 
-/**
- * Created by Nodirbek on 02.09.2017.
- */
+
 public class OrderProductsDTO {
 
     private Long productId;

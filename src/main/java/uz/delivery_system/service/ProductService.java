@@ -8,10 +8,6 @@ import uz.delivery_system.dto.product.ProductDetailsDTO;
 import uz.delivery_system.dto.product.ProductSliderDTO;
 
 import java.util.List;
-
-/**
- * Created by Nodirbek on 15.07.2017.
- */
 public interface ProductService {
 
     void addProduct(ProductDTO productDTO);

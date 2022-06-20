@@ -9,9 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-/**
- * Created by Nodirbek on 12.07.2017.
- */
 @Entity
 @Table(name = TableName.REGIONS)
 public class RegionEntity extends BaseEntity{

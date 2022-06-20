@@ -3,10 +3,6 @@ package uz.delivery_system.dto.shop;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.util.Date;
-
-/**
- * Created by Nodirbek on 09.07.2017.
- */
 public class ShopDetailsDTO extends ResourceSupport{
 
     private Long shopId;

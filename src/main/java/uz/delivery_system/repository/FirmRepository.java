@@ -5,9 +5,7 @@ import uz.delivery_system.entity.FirmEntity;
 
 import java.util.List;
 
-/**
- * Created by Nodirbek on 07.07.2017.
- */
+
 public interface FirmRepository extends JpaRepository<FirmEntity, Long>{
 
     List<FirmEntity> findAllByOrderByFirmPriorityDesc();

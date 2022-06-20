@@ -19,9 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Nodirbek on 02.09.2017.
- */
+
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -46,11 +44,11 @@ public class OrderServiceImpl implements OrderService {
         UserEntity userEntity = userRepository.findOne(SecurityUtils.getUserId());
         ShopEntity shopEntity = userEntity.getShop();
         if (shopEntity == null){
-            throw new NotFoundException(1, "Do'kon foydalanuvchisi logini bilan kiring");
+            throw new NotFoundException(1, "Log in with the store user logger");
         }
         FirmEntity firmEntity = firmRepository.findOne(dto.getFirmId());
         if (firmEntity == null) {
-            throw new NotFoundException(1,"Bunday firma mavjud emas!");
+            throw new NotFoundException(1,"Such a firm does not exist!");
         }
         OrderEntity orderEntity = new OrderEntity();
         List<OrderProductEntity> orderProductEntities = new ArrayList<>();
@@ -98,7 +96,7 @@ public class OrderServiceImpl implements OrderService {
             FirmEntity firmEntity = userEntity.getFirm();
             orderEntities = orderRepository.findByFirmEntityIdOrderByIdDesc(firmEntity.getId());
         }else {
-            throw new NotFoundException(1,"Do'kon yoki firma logini bilan kiring!");
+            throw new NotFoundException(1,"Log in with your store or firm log!");
         }
         List<OrderDTO> list = new ArrayList<>();
         orderEntities.forEach(orderEntity -> {
@@ -119,7 +117,7 @@ public class OrderServiceImpl implements OrderService {
             orderEntity = orderRepository.findByIdAndFirmEntityId(id, firmId);
         }
         if (orderEntity == null) {
-            throw new NotFoundException(1, "Bunday buyurtma topilmadi");
+            throw new NotFoundException(1, "Such an order could not be found");
         }
         List<OrderProductsDTO> list = new ArrayList<>();
         orderEntity.getOrderProducts().forEach(orderProductEntity -> {
@@ -133,22 +131,22 @@ public class OrderServiceImpl implements OrderService {
     public String changeStatus(Long id, short status) {
         OrderEntity orderEntity = orderRepository.findOne(id);
         short currentStatus = orderEntity.getStatus();
-        String message = currentStatus != status ? "Buyurtmani bu statusga o'tkazib bo'lmaydi!":
-                "Buyurtma avvaldan shu statusda turibdi!";
+        String message = currentStatus != status ? "Your order can not be transferred to this status!":
+                "The order stands in this status from the beginning!";
         if(currentStatus == 0){
             if(status == 1){
-                message = "Buyurtma bekor qilindi!";
+                message = "Order canceled!";
                 orderEntity.setStatus(status);
                 decreaseProductsAmountInPending(orderEntity);
             }
             if(status == 2){
-                message = "Buyurtma qabul qilindi!";
+                message = "Order accepted!";
                 orderEntity.setStatus(status);
                 chargeProductsAmountFromPendingToStore(orderEntity);
             }
         }else if(currentStatus == 2){
             if(status == 3){
-                message = "Buyurtma yetkazilganligi tasdiqlandi!";
+                message = "Confirmed order delivery!";
                 orderEntity.setStatus(status);
                 orderEntity.setDeliverDate(new Date());
                 decreaseProductsAmountInOrder(orderEntity);
@@ -163,15 +161,15 @@ public class OrderServiceImpl implements OrderService {
     public String revertOrder(Long id) {
         OrderEntity orderEntity = orderRepository.findOne(id);
         if(orderEntity == null){
-            throw new NotFoundException(1,"Bunday buyurtma mavjud emas");
+            throw new NotFoundException(1,"Such an order is not available");
         }
         if (orderEntity.getStatus() != 2){
-            return "Faqat qabul qilindi statusidagi buyurtmalarni qaytarib olish mumkin";
+            return "Only orders with accepted status can be returned";
         }
         chargeProductsAmountFromOrderToStore(orderEntity);
         orderEntity.setStatus((short)4);
         orderRepository.save(orderEntity);
-        return "Buyurtma qaytarib olindi";
+        return "Order returned";
     }
 
     private void chargeProductsAmountFromOrderToStore(OrderEntity orderEntity) {
@@ -223,11 +221,9 @@ public class OrderServiceImpl implements OrderService {
         OrderProductEntity orderProductEntity =
                 orderProductsRepository.findByOrderIdAndProductId(id,productId);
         if (orderProductEntity == null) {
-            throw new NotFoundException(1, "Bu buyurtmada ko'rsatildan maxsulot topilmadi");
+            throw new NotFoundException(1, "This order did not find any products from the show");
         }
-        /*
-        Avvalgi status o'zgartirilsa, shu maxsulotni amountInPending qiymati o'zgaradi
-         */
+
         if(orderProductEntity.getAccepted() != accepted){
             orderProductEntity.setAccepted(accepted);
             ProductEntity productEntity = orderProductEntity.getProduct();
@@ -243,8 +239,8 @@ public class OrderServiceImpl implements OrderService {
             productRepository.save(productEntity);
         }
 
-        String message = "Maxsulot buyutma"+(accepted ? "ga yetkazib berish uchun qo'shildi" :
-                " maxsulotlari ro'yhatidan olib tashlandi");
+        String message = "Products buyutma"+(accepted ? "ga joined for delivery" :
+                " removed from the list of products");
         return message;
     }
 

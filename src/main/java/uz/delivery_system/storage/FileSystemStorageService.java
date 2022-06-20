@@ -35,7 +35,7 @@ public class FileSystemStorageService implements StorageService {
                     StandardCopyOption.REPLACE_EXISTING);
             return filename;
         } catch (IOException e) {
-            throw new StorageException("Fayllardan birini yuklashda xatolik bo'ldi! ", e);
+            throw new StorageException("There was an error downloading one of the files! ", e);
         }
     }
 
@@ -55,14 +55,14 @@ public class FileSystemStorageService implements StorageService {
             }
         }
         catch (IOException e) {
-            throw new StorageException("Fayllardan birini yuklashda xatolik bo'ldi! ", e);
+            throw new StorageException("There was an error downloading one of the files! ", e);
         }
         return names;
     }
 
     private String getAndValidateFilename(MultipartFile file) {
         if (file.isEmpty()) {
-            throw new StorageException("Faylni yuklashdaa xatolik");
+            throw new StorageException("Error downloading file");
         }
         String name = file.getOriginalFilename();
         int ind = -1;
@@ -73,7 +73,7 @@ public class FileSystemStorageService implements StorageService {
             }
         }
         if(ind < 0){
-            throw new StorageException("Faylni yuklashdaa xatolik");
+            throw new StorageException("Error downloading file");
         }
         return UUID.randomUUID().toString()+name.substring(ind);
     }

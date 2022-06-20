@@ -28,9 +28,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Nodirbek on 15.07.2017.
- */
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -68,7 +65,7 @@ public class ProductServiceImpl implements ProductService {
     public void update(ProductDTO productDTO) {
         ProductEntity productEntity = productRepository.findOne(productDTO.getId());
         if (productEntity == null) {
-            throw new NotFoundException(1, "Bunday maxsulot mavjud emas!");
+            throw new NotFoundException(1, "Such a product does not exist!");
         }
         if(productDTO.getFile()!= null){
             String filename = storageService.store(productDTO.getFile());
@@ -82,7 +79,7 @@ public class ProductServiceImpl implements ProductService {
     public void delete(Long id) {
         ProductEntity productEntity = productRepository.findOne(id);
         if (productEntity == null) {
-            throw new NotFoundException(1, "Maxsulot topilmadi");
+            throw new NotFoundException(1, "Products not found");
         }
         productRepository.delete(id);
     }
@@ -91,7 +88,7 @@ public class ProductServiceImpl implements ProductService {
     public ProductDetailsDTO showProductDetails(Long id) {
         ProductEntity productEntity = productRepository.findOne(id);
         if (productEntity == null) {
-            throw new NotFoundException(1,"Maxsulot topilmadi");
+            throw new NotFoundException(1,"Products not found");
         }
         ProductDetailsDTO dto = getProductDetailsDTO(productEntity);
         return dto;
@@ -111,7 +108,7 @@ public class ProductServiceImpl implements ProductService {
     public Page<ProductDetailsDTO> listProductDetails(Pageable pageable) {
         UserEntity userEntity = userRepository.findOne(SecurityUtils.getUserId());
         if (userEntity.getFirm()==null){
-            throw new NullPointerException("Firma logini bilan kiring");
+            throw new NullPointerException("Log in with the company log");
         }
         Page<ProductEntity> productEntities = productRepository.findByFirmId(userEntity.getFirm().getId(),pageable);
         List<ProductDetailsDTO> list = new ArrayList<>();
@@ -136,7 +133,7 @@ public class ProductServiceImpl implements ProductService {
     public void addSliderImage(ProductSliderDTO dto) {
         ProductEntity productEntity = productRepository.findOne(dto.getProductId());
         if (productEntity == null) {
-            throw new NotFoundException(1,"Bunday maxsulot topilmadi");
+            throw new NotFoundException(1,"Bunday Products not found");
         }
         String filename = storageService.store(dto.getFile());
         SliderImageEntity sliderImageEntity = getSliderImageEntity(productEntity, filename, dto.getTitle());
@@ -148,7 +145,7 @@ public class ProductServiceImpl implements ProductService {
     public void setProductAmount(ProductAmountDTO dto) {
         ProductEntity productEntity = productRepository.findOne(dto.getProductId());
         if (productEntity == null) {
-            throw new NotFoundException(1, "Bunday maxsulot mavjud emas!");
+            throw new NotFoundException(1, "Such a product does not exist!");
         }
         productEntity.setAmountInStore(dto.getProductAmount());
         productRepository.save(productEntity);

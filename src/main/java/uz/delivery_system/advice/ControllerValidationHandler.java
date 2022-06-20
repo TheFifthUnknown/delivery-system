@@ -42,8 +42,6 @@ public class ControllerValidationHandler {
 //        return dto;
 //    }
 
-    // TODO: 13.02.2017 must resolve to send UserPasswordIncorrectException error message
-
     private String resolveLocalizedErrorMessage(FieldError fieldError) {
         Locale currentLocale =  LocaleContextHolder.getLocale();
         String localizedErrorMessage = messageSource.getMessage(fieldError, currentLocale);

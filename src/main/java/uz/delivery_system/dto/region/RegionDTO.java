@@ -1,10 +1,6 @@
 package uz.delivery_system.dto.region;
 
 import javax.validation.constraints.NotNull;
-
-/**
- * Created by Nodirbek on 13.07.2017.
- */
 public class RegionDTO {
 
     private Long id;

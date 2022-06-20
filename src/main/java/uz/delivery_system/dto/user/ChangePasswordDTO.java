@@ -1,8 +1,5 @@
 package uz.delivery_system.dto.user;
 
-/**
- * Created by Nodirbek on 18.10.2017.
- */
 public class ChangePasswordDTO {
 
     private String password;

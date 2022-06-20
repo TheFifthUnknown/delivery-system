@@ -6,9 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Created by Nodirbek on 02.09.2017.
- */
+
 public class OrderDTO {
 
     private Long orderId;

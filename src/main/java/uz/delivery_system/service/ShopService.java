@@ -6,10 +6,6 @@ import uz.delivery_system.dto.shop.ShopDetailsDTO;
 import uz.delivery_system.dto.shop.ShopRegistrationDTO;
 import uz.delivery_system.entity.ShopEntity;
 
-/**
- * Created by Nodirbek on 12.07.2017.
- */
-
 public interface ShopService {
 
     ShopEntity createShopWithManager(ShopRegistrationDTO registrationDTO);

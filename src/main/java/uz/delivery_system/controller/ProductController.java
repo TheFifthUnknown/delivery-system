@@ -19,10 +19,7 @@ import uz.delivery_system.service.ProductService;
 
 import java.util.List;
 
-/**
- * Created by Nodirbek on 15.07.2017.
- */
-@Api(description = "Maxsulotlar")
+@Api(description = "Products")
 @RestController
 @RequestMapping(value = "products")
 public class ProductController {
@@ -30,43 +27,43 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @ApiOperation(value = "Maxsulot qo'shish", notes = "Maxsulot qo'shish, bu yerda id hech qanday parametr berilmasligi kerak.")
+    @ApiOperation(value = "Save products", notes = "Добавление продукта, здесь id не должен быть предоставлен ни один параметр.")
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<String> create(@Validated ProductDTO productDTO){
         productService.addProduct(productDTO);
-        String message = (productDTO.getId() == null) ? "Maxsulot ro'yhatga qo'shildi":"Maxsulot ma'lumotlari yangilandi";
+        String message = (productDTO.getId() == null) ? "Product added to the list":"Product information updated";
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Maxsulotni yangilash", notes = "Avvaldan mavjud maxsulot ma'lumotlarini o'zgartirish")
+    @ApiOperation(value = "Product information updated", notes = "Изменение ранее существовавших данных о продукте")
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<String> update(@Validated ProductDTO productDTO){
         productService.update(productDTO);
-        return new ResponseEntity<>("Maxsulot ma'lumotlari yangilandi", HttpStatus.OK);
+        return new ResponseEntity<>("Product information updated", HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Maxsulotni o'chirish", notes = "berilgan {id} li maxsulotni bazadan o'chirish")
+    @ApiOperation(value = "Delete product", notes = "заданный {id} удалить продукт из базы данных")
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> delete(@PathVariable Long id){
         productService.delete(id);
-        return new ResponseEntity<>("Maxsulot bazadan o'chirildi", HttpStatus.OK);
+        return new ResponseEntity<>("The product was removed from the base", HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Maxsulotni ko'rish", notes = "Berilgan {id} li maxsulotni ma'lumotlarini ko'rish")
+    @ApiOperation(value = "Product Overview", notes = "Просмотр данных о продукте с заданным {id}")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<ProductDetailsDTO> showProductDetails(@PathVariable Long id){
         ProductDetailsDTO dto = productService.showProductDetails(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Maxsulot miqdori", notes = "Maxsulot uchun miqdor/штук belgilash. ")
+    @ApiOperation(value = "Product quantity", notes = "Обозначение количества/штуки для продукта.")
     @RequestMapping(method = RequestMethod.POST, value = "/amount", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> showProductDetails(@RequestBody @Validated ProductAmountDTO dto){
         productService.setProductAmount(dto);
-        return new ResponseEntity<>("Maxsulot miqdori o'zgartirildi", HttpStatus.OK);
+        return new ResponseEntity<>("Product quantity changed", HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Maxsulotlar ro'yhati", notes = "Firma maxsulotlari ro'yhatini ko'rish")
+    @ApiOperation(value = "List of products", notes = "Просмотр списка продуктов фирмы")
     @RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> listProductDetails(Pageable pageable){
         Page<ProductDetailsDTO> dtoPage = productService.listProductDetails(pageable);
@@ -75,7 +72,7 @@ public class ProductController {
 
 
     // Role Shop_Manager
-    @ApiOperation(value = "Maxsulotlar firma va kategoriya bo'yicha", notes = "Firma va kategoriya bo'yicha maxsulotlarni chiqarish")
+    @ApiOperation(value = "Products by firm and category", notes = "Выпуск продукции по фирмам и категориям")
     @RequestMapping(method = RequestMethod.GET, value = "/firm/{firmId}/category/{category}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<ProductDetailsDTO>> listCategoryProducts(@PathVariable Long firmId, @PathVariable Long category){
         List<ProductDetailsDTO> dtoPage = productService.listCategoryProducts(firmId, category);
@@ -83,19 +80,19 @@ public class ProductController {
     }
 
     // Role Firm_Manager
-    @ApiOperation(value = "slider qo'shish", notes = "Berilgan maxsulotga reklama sifaatida slider qo'shish.")
+    @ApiOperation(value = "add slider", notes = "Добавление слайдера в качестве рекламы к заданному продукту.")
     @RequestMapping(method = RequestMethod.POST, value = "/slider")
     public ResponseEntity<String> addImageToSlider(ProductSliderDTO dto){
         productService.addSliderImage(dto);
-        return ResponseEntity.ok("Slider uchun yangi rasm qo'shildi");
+        return ResponseEntity.ok("Added a new image for Slider");
     }
 
     // Role Firm_Manager
-    @ApiOperation(value = "sliderni o'chirish", notes = "Berilgan maxsulotga qo'shilgan slider rasmini o'chirish")
+    @ApiOperation(value = "delete slider", notes = "Удаление изображения слайдера, добавленного к данному продукту")
     @RequestMapping(method = RequestMethod.DELETE, value = "slider/{imageId}")
     public ResponseEntity<String> removeSliderItem(@PathVariable Long imageId){
         productService.removeSliderItem(imageId);
-        return ResponseEntity.ok("Rasm sliderdan o'chirildi");
+        return ResponseEntity.ok("Image removed from slider");
     }
 
 }

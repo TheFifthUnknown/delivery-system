@@ -34,16 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/*
-JWT Authentication Rest Controller.
-    Tizimni login/parollarni nazorat qiluvchi bo'limi. Bu controllerda har bir role @see UserRole
-    (ADMIN, SHOP_MANAGER, FIRM_ADMIN, FIRM_DELIVER) uchun kirish qismi bor. To'g'ri login va parol bilan kelgan
-    ma'lumot JWT yordamida tokenga aylantiriladi va Security ga qo'shiladi. Bir marta login qilingandan so'ng
-    bu token cache @see EhCacheBean hotirada saqlanadi. Keyin foydalanuvchilar shu token orqali tizimning boshqa
-    qismlariga murojat qilish huquqiga ega bo'ladi.
-    To'liq ma'lumot uchun @Url jwt.io
- */
-@Api(value = "Authorization", description = "login/parol bo'limi")
+@Api(value = "Authorization", description = "login/password")
 @RestController
 public class AuthenticationRestController {
 
@@ -61,7 +52,7 @@ public class AuthenticationRestController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    @ApiOperation(value = "admin",notes = "administrator mobil dasturi uchun avtorizatsiya bo'limi. Headerdagi Authorization uchun ixtiyotiy matn yozish mumkin.")
+    @ApiOperation(value = "admin",notes = "раздел авторизации для мобильного приложения admin. Для авторизации в заголовке можно написать произвольный текст.")
     @RequestMapping(value = "${route.authentication.owner}", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<JwtAuthenticationResponse> createAuthenticationMobileDriverToken(@RequestBody JwtAuthenticationRequest authenticationRequest,Device device,HttpServletResponse response) throws AuthenticationException, IOException {
         // Perform the security
@@ -85,7 +76,7 @@ public class AuthenticationRestController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(token, jwtUser.getFullName(),UserRole.ADMIN));
     }
 
-    @ApiOperation(value = "firma menegeri",notes = "firma menegeri uchun login qismi, Headerdagi Authorization uchun ixtiyotiy matn yozish mumkin.")
+    @ApiOperation(value = "firm menegeri",notes = "часть логина для фирменного менеджера, можно написать произвольный текст для авторизации в заголовке.")
     @RequestMapping(value = "${route.authentication.firm}", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<JwtAuthenticationResponse> createAuthenticationFirmAdmin(@RequestBody JwtAuthenticationRequest authenticationRequest,Device device,HttpServletResponse response) throws AuthenticationException, IOException {
         // Perform the security
@@ -108,8 +99,8 @@ public class AuthenticationRestController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(token, jwtUser.getFullName(),SecurityUtils.getUserRole()));
     }
 
-    @ApiOperation(value = "do'konlar",notes = "do'konlar uchun yaratilgan mobil dastur foydalanuvchisi uchun ajratilgan login qismi, " +
-            "Headerdagi Authorization uchun ixtiyotiy matn yozish mumkin.")
+    @ApiOperation(value = "shops",notes = "раздел входа, зарезервированный для пользователя мобильного приложения, созданного для магазинов, " +
+            "Для авторизации в заголовке можно написать произвольный текст.")
     @RequestMapping(value = "${route.authentication.shop}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<JwtAuthenticationResponse> createAuthenticationWebToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device, HttpServletResponse response) throws AuthenticationException, IOException {
         // Perform the security
@@ -131,8 +122,8 @@ public class AuthenticationRestController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(token,jwtUser.getFullName(),SecurityUtils.getUserRole()));
     }
 
-    @ApiOperation(value = "dastavchik",notes = "Yetkazib beruvchi uchun ajratilgan login qismi, " +
-            "Headerdagi Authorization uchun ixtiyotiy matn yozish mumkin.")
+    @ApiOperation(value = "weaving",notes = "Часть входа зарезервирована для поставщика, " +
+            "Для авторизации в заголовке можно написать произвольный текст.")
     @RequestMapping(value = "${route.authentication.deliver}", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<JwtAuthenticationResponse> createAuthenticationMobileClientToken(@RequestBody JwtAuthenticationRequest authenticationRequest,Device device,HttpServletResponse response) throws AuthenticationException, IOException {
         // Perform the security
@@ -154,7 +145,7 @@ public class AuthenticationRestController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }
 
-    @ApiOperation(value = "tokenni yangilash",notes = "Eski tokenni yangilash")
+    @ApiOperation(value = "token update",notes = "Обновление старого токена")
     @RequestMapping(value = "${route.authentication.refresh}", method = RequestMethod.GET)
     public ResponseEntity<JwtAuthenticationResponse> refreshAndGetAuthenticationToken(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
@@ -169,7 +160,7 @@ public class AuthenticationRestController {
         }
     }
 
-    @ApiOperation(value = "logout",notes = "tizimdan chiqish")
+    @ApiOperation(value = "logout",notes = "Выход из системы")
     @RequestMapping(value = "${route.logout}", method = RequestMethod.GET)
     public ResponseEntity<Void> logout(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);

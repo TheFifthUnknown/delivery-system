@@ -28,9 +28,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Created by Nodirbek on 12.07.2017.
- */
 @Service
 public class ShopServiceImpl implements ShopService {
 
@@ -51,17 +48,17 @@ public class ShopServiceImpl implements ShopService {
     public ShopEntity createShopWithManager(ShopRegistrationDTO registrationDTO) {
         Optional<UserEntity> user = userRepository.findByUsername(registrationDTO.getUsername());
         if (user.isPresent()) {
-            throw new AlreadyExistException(2, "Bu login avvaldan mavjud");
+            throw new AlreadyExistException(2, "This login is available from the beginning");
         }
         Optional<ShopEntity> shop = shopRepository.findByShopINN(registrationDTO.getShopINN());
         if (shop.isPresent()) {
-            throw new AlreadyExistException(2,"Bunday INN avvaldan mavjud!");
+            throw new AlreadyExistException(2,"Such an INN is available from the beginning!");
         }
         UserEntity userEntity = fetchUserData(registrationDTO);
         ShopEntity shopEntity = fetchShopData(registrationDTO);
         RegionEntity regionEntity = regionRepository.findOne(registrationDTO.getShopRegionId());
         if (regionEntity == null) {
-            throw new NotFoundException(1,"Bunday region mavjud emas!");
+            throw new NotFoundException(1,"Such a region does not exist!");
         }
         userEntity.setShop(shopEntity);
         shopEntity.setManeger(userEntity);
@@ -75,15 +72,15 @@ public class ShopServiceImpl implements ShopService {
     public void updateShop(CategoryService.ShopUpdateDTO dto) {
         ShopEntity shopEntity = shopRepository.findOne(dto.getShopId());
         if (shopEntity == null) {
-            throw new NotFoundException(3, "Bunday do'kon topilmadi");
+            throw new NotFoundException(3, "Such a store could not be found");
         }
         Long count = shopRepository.countByShopINN(dto.getShopINN());
         if (count > 1) {
-            throw new AlreadyExistException(2,"Bunday INN avvaldan mavjud!");
+            throw new AlreadyExistException(2,"Such an INN is available from the beginning!");
         }
         RegionEntity regionEntity = regionRepository.findOne(dto.getShopRegionId());
         if (regionEntity == null) {
-            throw new NotFoundException(1,"Bunday region mavjud emas!");
+            throw new NotFoundException(1,"Such a region does not exist!");
         }
         BeanUtils.copyProperties(dto, shopEntity);
         BeanUtils.copyProperties(dto, shopEntity.getManeger());
@@ -95,7 +92,7 @@ public class ShopServiceImpl implements ShopService {
     public ShopDetailsDTO getShopDetails(Long id) {
         ShopEntity shopEntity = shopRepository.findOne(id);
         if (shopEntity == null) {
-            throw new NotFoundException(3, "Bunday do'kon topilmadi");
+            throw new NotFoundException(3, "Such a store could not be found");
         }
         return getShopDetailsAsDTO(shopEntity);
     }
@@ -114,7 +111,7 @@ public class ShopServiceImpl implements ShopService {
     public void blockShop(Long id, Boolean blocked) {
         ShopEntity shopEntity = shopRepository.findOne(id);
         if (shopEntity == null) {
-            throw new NotFoundException(2, "Bunday firma topilmadi");
+            throw new NotFoundException(2, "Such a firm could not be found");
         }
         shopEntity.setBlocked(blocked);
         shopRepository.save(shopEntity);
@@ -124,7 +121,7 @@ public class ShopServiceImpl implements ShopService {
     public void deleteShopWithManager(Long id) {
         ShopEntity shopEntity = shopRepository.findOne(id);
         if (shopEntity == null) {
-            throw new NotFoundException(2, "Bunday firma topilmadi");
+            throw new NotFoundException(2, "Such a firm could not be found");
         }
         userRepository.delete(shopEntity.getManeger());
     }

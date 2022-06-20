@@ -6,9 +6,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-/**
- * Created by Nodirbek on 09.07.2017.
- */
 public class FirmDetailsDTO extends ResourceSupport{
 
     private Long firmId;

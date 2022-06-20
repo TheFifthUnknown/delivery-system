@@ -9,9 +9,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Nodirbek on 31.08.2017.
- */
 @Entity
 @Table(name = TableName.ORDERS)
 public class OrderEntity extends BaseEntity{

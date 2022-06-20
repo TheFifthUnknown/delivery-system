@@ -6,9 +6,6 @@ import uz.delivery_system.dto.order.OrderDTO;
 
 import java.util.List;
 
-/**
- * Created by Nodirbek on 02.09.2017.
- */
 public interface OrderService {
 
     void createOrder(CreateOrderDTO createOrderDTO);

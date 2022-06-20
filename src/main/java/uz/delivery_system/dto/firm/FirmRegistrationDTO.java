@@ -3,9 +3,6 @@ package uz.delivery_system.dto.firm;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * Created by Nodirbek on 08.07.2017.
- */
 public class FirmRegistrationDTO {
 
     @NotNull

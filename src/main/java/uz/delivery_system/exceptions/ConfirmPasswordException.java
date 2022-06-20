@@ -4,9 +4,6 @@ import org.jetbrains.annotations.NonNls;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-/**
- * Created by Nodirbek on 08.07.2017.
- */
 @ResponseStatus(HttpStatus.NO_CONTENT)
 public class ConfirmPasswordException extends RuntimeException {
 

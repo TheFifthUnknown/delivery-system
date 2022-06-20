@@ -6,9 +6,6 @@ import uz.delivery_system.utils.TableName;
 import javax.persistence.*;
 import java.util.List;
 
-/**
- * Created by Nodirbek on 13.07.2017.
- */
 @Entity
 @Table(name = TableName.CATEGORY)
 public class CategoryEntity extends UpdatableBaseEntity{

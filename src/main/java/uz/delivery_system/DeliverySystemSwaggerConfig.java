@@ -18,10 +18,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by Nodirbek on 03.11.2017.
- */
 @Configuration
 @EnableSwagger2
 public class DeliverySystemSwaggerConfig {
@@ -41,17 +37,15 @@ public class DeliverySystemSwaggerConfig {
                 .globalOperationParameters(header);
     }
 
-    // Describe your apis
+
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("PharmacySearch APIs")
                 .description("Search pharmacy soft endpoint rest apis list.")
-                .contact(new Contact("Nodirbek Sadullayev", "n0d1r.uz", "n.sadullayev@gmail.com"))
                 .version("1.0-SNAPSHOT")
                 .build();
     }
 
-    // Only select apis that matches the given Predicates.
     private Predicate<String> paths() {
         // Match all paths except /error
         return Predicates.and(

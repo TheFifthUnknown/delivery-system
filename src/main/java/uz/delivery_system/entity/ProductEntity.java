@@ -7,10 +7,6 @@ import uz.delivery_system.utils.TableName;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by Nodirbek on 15.07.2017.
- */
 @Entity
 @Table(name = TableName.PRODUCTS)
 public class ProductEntity extends BaseEntity{

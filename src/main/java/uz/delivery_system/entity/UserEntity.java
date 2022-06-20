@@ -6,10 +6,6 @@ import uz.delivery_system.enums.UserRole;
 
 import javax.persistence.*;
 import java.util.Date;
-
-/**
- * @author Sadullayev Nodirbek.
- */
 @Entity
 @Table(name = TableName.USERS)
 public class UserEntity extends UpdatableBaseEntity {
