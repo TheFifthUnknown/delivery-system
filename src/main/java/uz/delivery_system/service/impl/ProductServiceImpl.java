@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private SliderImageRepository sliderImageRepository;
 
-    private String IMAGE_URL = "http://34.89.208.194:8080/api/v1/files/";
+    private String IMAGE_URL = "http://34.79.110.94:8083/api/v1/files/";
 
     @Override
     @Transactional

@@ -6,13 +6,124 @@
   <component name="ChangeListManager">
     <list default="true" id="c6156d34-56b6-4446-a6df-c0c63718c093" name="Default" comment="bug fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/FirmServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/FirmServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/ProductServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/impl/FirmServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/impl/FirmServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/impl/ProductServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/impl/ProductServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/delivery-system-1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/delivery-system-1.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/delivery-system-1.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/delivery-system-1.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/DeliverySystemApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/DeliverySystemJpaConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/DeliverySystemRestConfig$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/DeliverySystemRestConfig$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/DeliverySystemRestConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/DeliverySystemSecurityConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/DeliverySystemSwaggerConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/advice/ControllerValidationHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/component/EhCacheBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/controller/AuthenticationRestController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/controller/CategoryController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/controller/FileUploadController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/controller/FirmController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/controller/OrderController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/controller/ProductController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/controller/RegionController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/controller/ReportController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/controller/ShopController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/controller/UserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/category/CategoryDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/firm/CategoryFirmsDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/firm/FirmDetailsDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/firm/FirmRegistrationDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/firm/FirmUpdateDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/order/CreateOrderDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/order/OrderDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/order/OrderProductsDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/order/ProductCount.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/product/ProductAmountDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/product/ProductDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/product/ProductDetailsDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/product/ProductSliderDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/product/SliderDetails.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/region/RegionDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/report/FirmsReportDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/report/PaymentType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/report/PeriodOfTimeDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/report/ProductsReportDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/report/ShopsReportDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/report/ShortReportDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/shop/ShopDetailsDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/shop/ShopRegistrationDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/dto/user/ChangePasswordDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/CategoryEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/CategoryEntity_.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/FirmEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/FirmEntity_.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/LogoImageEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/LogoImageEntity_.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/OrderEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/OrderEntity_.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/OrderProductEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/OrderProductEntity_.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/ProductEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/ProductEntity_.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/RegionEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/RegionEntity_.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/ShopEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/ShopEntity_.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/SliderImageEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/SliderImageEntity_.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/UserEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/UserEntity_.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/base/BaseEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/base/BaseEntity_.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/base/UpdatableBaseEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/entity/base/UpdatableBaseEntity_.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/enums/UserRole.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/exceptions/AlreadyExistException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/exceptions/ConfirmPasswordException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/exceptions/NotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/exceptions/NullPointerException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/repository/CategoryRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/repository/FirmRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/repository/OrderProductsRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/repository/OrderRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/repository/ProductRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/repository/RegionRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/repository/ShopRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/repository/SliderImageRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/repository/UserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/security/JwtAuthenticationEntryPoint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/security/JwtAuthenticationTokenFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/security/JwtTokenUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/security/JwtUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/security/JwtUserDetailsServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/security/JwtUserFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/security/dto/JwtAuthenticationRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/security/dto/JwtAuthenticationResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/security/exception/UserAlreadyExistingException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/CategoryService$ShopUpdateDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/CategoryService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/FirmService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/OrderService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/ProductService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/RegionService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/ReportService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/ShopService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/impl/CategoryServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/impl/FirmServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/impl/OrderServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/impl/ProductServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/impl/RegionServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/impl/ReportServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/impl/ShopServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/service/impl/UserServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/storage/FileSystemStorageService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/storage/StorageException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/storage/StorageFileNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/storage/StorageProperties.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/storage/StorageService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/utils/CommonUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/utils/SecurityUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uz/delivery_system/utils/TableName.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -430,13 +541,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;31fe2abb07403fc1975bb833626028e8&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "31fe2abb07403fc1975bb833626028e8"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="uz.delivery_system.repository" />
@@ -954,7 +1066,7 @@
       <workItem from="1655638353490" duration="1320000" />
       <workItem from="1655641436377" duration="292000" />
       <workItem from="1655642035747" duration="4271000" />
-      <workItem from="1655714206218" duration="643000" />
+      <workItem from="1655714206218" duration="1397000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1499921415314</created>
