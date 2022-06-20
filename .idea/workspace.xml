@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6156d34-56b6-4446-a6df-c0c63718c093" name="Default" comment="bug fix">
-      <change beforePath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/FirmServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/FirmServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uz/delivery_system/service/impl/ProductServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-system-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-system-api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -950,7 +949,7 @@
       <workItem from="1655638353490" duration="1320000" />
       <workItem from="1655641436377" duration="292000" />
       <workItem from="1655642035747" duration="4271000" />
-      <workItem from="1655714206218" duration="2147000" />
+      <workItem from="1655714206218" duration="2417000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1499921415314</created>
