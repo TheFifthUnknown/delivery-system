@@ -49,4 +49,4 @@ route:
     logout: logout
 
 server:
-    port: 8083
+    port: 8080
